@@ -459,13 +459,34 @@
 
         <div class="card">
           <div class="chip">✉️ Send a Message</div>
-          <form onsubmit="submitForm(event)">
-            <input id="name" placeholder="Your name" required />
-            <input id="email" type="email" placeholder="Email" required />
-            <textarea id="msg" placeholder="Message..."></textarea>
-            <button class="btn primary" type="submit">Send</button>
-            <p class="mini" id="formStatus"></p>
-          </form>
+          <form action="https://formsubmit.co/krishnabajaj643@gmail.com" method="POST"
+      style="display:grid; gap:10px; margin-top:12px">
+
+  <input type="hidden" name="_subject" value="New message from Zanitzu Gaming website">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+
+  <input name="name" placeholder="Your name" required
+         style="padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
+                background:rgba(255,255,255,.04);color:#fff;" />
+
+  <input name="email" type="email" placeholder="Email" required
+         style="padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
+                background:rgba(255,255,255,.04);color:#fff;" />
+
+  <textarea name="message" placeholder="Message..."
+            style="min-height:110px;resize:vertical;padding:12px;border-radius:14px;
+                   border:1px solid rgba(255,255,255,.10);
+                   background:rgba(255,255,255,.04);color:#fff;"></textarea>
+
+  <button type="submit"
+          style="padding:12px;border-radius:14px;border:0;
+                 background:linear-gradient(135deg,#7C3AED,#22D3EE);
+                 color:#fff;font-weight:800;cursor:pointer;">
+    Send Message
+  </button>
+</form>
+
         </div>
       </div>
     </section>
