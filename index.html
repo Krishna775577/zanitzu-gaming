@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanitzu Gaming</title>
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:#0C1020;
+      --text:#EAF0FF;
+      --muted:#9AA4C2;
+      --neon:#7C3AED;   /* purple */
+      --neon2:#22D3EE;  /* cyan */
+      --danger:#FF3B7A; /* pink */
+      --shadow: 0 0 24px rgba(124,58,237,.35), 0 0 18px rgba(34,211,238,.18);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 15%, rgba(34,211,238,.18), transparent 55%),
+        radial-gradient(800px 500px at 40% 90%, rgba(255,59,122,.12), transparent 55%),
+        linear-gradient(180deg, #050714 0%, #070A12 40%, #050714 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    .glow{
+      position:fixed; inset:-200px;
+      background: conic-gradient(from 180deg, rgba(124,58,237,.18), rgba(34,211,238,.14), rgba(255,59,122,.10), rgba(124,58,237,.18));
+      filter: blur(80px);
+      opacity:.35;
+      pointer-events:none;
+      animation: spin 14s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,18,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .navin{max-width:var(--max); margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      box-shadow: var(--shadow);
+      display:grid; place-items:center;
+      font-weight:800;
+    }
+    .brand span{font-weight:800; letter-spacing:.6px}
+    .links{display:flex; gap:14px; flex-wrap:wrap}
+    .links a{
+      padding:10px 12px; border-radius:12px;
+      color:var(--muted);
+      border:1px solid transparent;
+    }
+    .links a:hover{color:var(--text); border-color: rgba(124,58,237,.35); box-shadow: 0 0 0 3px rgba(124,58,237,.12);}
+    .cta{
+      padding:10px 14px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,211,238,.85));
+      box-shadow: var(--shadow);
+      font-weight:700;
+      border:0;
+      cursor:pointer;
+    }
+    .cta:active{transform: translateY(1px)}
+    .menuBtn{display:none}
+
+    /* Hero */
+    .hero{padding:44px 0 18px; display:grid; gap:18px; align-items:center; grid-template-columns: 1.2fr .8fr;}
+    .tag{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      width: fit-content;
+    }
+    .tag b{color:var(--text)}
+    h1{
+      margin:0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: .2px;
+    }
+    .grad{
+      background: linear-gradient(90deg, var(--neon2), var(--neon), var(--danger));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 18px rgba(34,211,238,.12);
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      line-height:1.7;
+      max-width: 58ch;
+    }
+    .heroBtns{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;}
+    .btn{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn:hover{border-color: rgba(34,211,238,.45); box-shadow: 0 0 0 3px rgba(34,211,238,.10);}
+    .btn.primary{
+      border:0;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(255,59,122,.75));
+      box-shadow: var(--shadow);
+    }
+
+    .heroCard{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 200px at 30% 20%, rgba(34,211,238,.20), transparent 60%),
+                  radial-gradient(500px 220px at 80% 60%, rgba(124,58,237,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .stats{display:grid; grid-template-columns: repeat(2,1fr); gap:12px; margin-top:12px; position:relative;}
+    .stat{
+      background: rgba(7,10,18,.55);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px;
+    }
+    .stat .k{font-size:22px; font-weight:900}
+    .stat .l{color:var(--muted); font-size:12px; margin-top:6px}
+    .meter{
+      height:10px; background: rgba(255,255,255,.06);
+      border-radius:999px; overflow:hidden; margin-top:10px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--neon2), var(--neon), var(--danger));
+      box-shadow: var(--shadow);
+      transition: width 900ms ease;
+    }
+
+    section{padding:26px 0}
+    .h2{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .h2 h2{margin:0; font-size:22px}
+    .h2 p{margin:0; color:var(--muted)}
+    .grid{display:grid; gap:14px; margin-top:14px}
+    .grid.cols3{grid-template-columns: repeat(3, 1fr)}
+    .grid.cols2{grid-template-columns: repeat(2, 1fr)}
+
+    .card{
+      background: rgba(12,16,32,.72);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.25);
+    }
+    .card:hover{border-color: rgba(124,58,237,.35); box-shadow: 0 0 0 3px rgba(124,58,237,.10), 0 18px 60px rgba(0,0,0,.35);}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:12px;
+      width:fit-content;
+    }
+    .title{font-weight:900; margin:10px 0 6px; font-size:16px}
+    .desc{margin:0; color:var(--muted); line-height:1.65; font-size:14px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px}
+    .mini{
+      font-size:12px; color:var(--muted);
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .dot{
+      width:6px; height:6px; border-radius:999px;
+      background: var(--neon2); box-shadow: 0 0 10px rgba(34,211,238,.5);
+      display:inline-block;
+    }
+
+    .gallery{
+      display:grid; gap:12px; margin-top:14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .shot{
+      grid-column: span 4;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(135deg, rgba(34,211,238,.20), rgba(124,58,237,.18)),
+        radial-gradient(900px 260px at 20% 20%, rgba(255,59,122,.16), transparent 60%);
+      min-height: 140px;
+      position:relative;
+      overflow:hidden;
+    }
+    .shot span{
+      position:absolute; left:14px; bottom:12px;
+      font-weight:800; letter-spacing:.3px;
+      color: rgba(234,240,255,.95);
+      text-shadow: 0 10px 30px rgba(0,0,0,.55);
+    }
+
+    form{display:grid; gap:10px; margin-top:14px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(34,211,238,.55);
+      box-shadow: 0 0 0 3px rgba(34,211,238,.12);
+    }
+    textarea{min-height:110px; resize:vertical}
+    .footer{
+      padding:26px 0 40px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:22px;
+    }
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; padding-top:28px}
+      .grid.cols3{grid-template-columns: 1fr}
+      .grid.cols2{grid-template-columns: 1fr}
+      .shot{grid-column: span 6}
+      .menuBtn{display:inline-flex}
+      .links{display:none}
+      .links.open{display:flex; width:100%}
+      .navin{flex-wrap:wrap}
+    }
+    @media (max-width: 520px){
+      .shot{grid-column: span 12}
+      .stats{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+
+  <header class="nav">
+    <div class="navin">
+      <a class="brand" href="#top">
+        <div class="logo">ZG</div>
+        <span>Zanitzu Gaming</span>
+      </a>
+
+      <button class="btn menuBtn" id="menuBtn">Menu</button>
+
+      <nav class="links" id="navLinks">
+        <a href="#games">Games</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="cta" onclick="scrollToId('contact')">Join Squad</button>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div>
+        <div class="tag">🎮 <b>Live</b> • Stumble Guys • Community</div>
+        <h1>
+          Welcome to <span class="grad">Zanitzu Gaming</span>
+        </h1>
+        <p class="sub">
+          Dark neon gamer vibe website — yahan aap apne Stumble Guys clips, squad info,
+          tournaments aur socials easily show kar sakte ho.
+        </p>
+        <div class="heroBtns">
+          <button class="btn primary" onclick="scrollToId('games')">Explore</button>
+          <button class="btn" onclick="copyTag()">Copy Discord Tag</button>
+          <button class="btn" onclick="scrollToId('gallery')">See Clips</button>
+        </div>
+        <p class="mini" style="margin-top:14px;">
+          <span class="dot"></span> Squad • <span class="dot"></span> Clips • <span class="dot"></span> Rank grind
+        </p>
+      </div>
+
+      <div class="heroCard">
+        <div class="chip">⚡ Season Stats</div>
+        <div class="title" style="font-size:18px; margin-top:10px;">Player Stats</div>
+        <p class="desc">Numbers ko aap apne hisaab se update kar sakte ho.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="k" id="kda">2.90</div>
+            <div class="l">K/D Ratio</div>
+            <div class="meter"><div class="bar" data-w="70"></div></div>
+          </div>
+          <div class="stat">
+            <div class="k" id="win">61%</div>
+            <div class="l">Win Rate</div>
+            <div class="meter"><div class="bar" data-w="61"></div></div>
+          </div>
+          <div class="stat">
+            <div class="k" id="rank">Champion</div>
+            <div class="l">Rank</div>
+            <div class="meter"><div class="bar" data-w="88"></div></div>
+          </div>
+          <div class="stat">
+            <div class="k" id="hrs">140</div>
+            <div class="l">Hours Played</div>
+            <div class="meter"><div class="bar" data-w="66"></div></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="mini">
+            <span class="dot"></span> Discord: <b id="discordTag">zanitzu#7777</b>
+          </div>
+          <button class="btn" onclick="randomize()">Randomize</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="games">
+      <div class="h2">
+        <h2>Main Game</h2>
+        <p>Clan game info</p>
+      </div>
+
+      <div class="grid cols3">
+        <div class="card">
+          <div class="chip">🔥 Featured</div>
+          <div class="title">Stumble Guys</div>
+          <p class="desc">Fast rounds • clutch plays • squad wins • insane comebacks.</p>
+          <div class="row">
+            <div class="mini"><span class="dot"></span> Movement • Timing</div>
+            <a class="chip" href="#gallery" onclick="scrollToId('gallery')">View Clips →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chip">🏆 Clan</div>
+          <div class="title">Zanitzu Squad</div>
+          <p class="desc">Recruiting active players • friendly + competitive vibe.</p>
+          <div class="row">
+            <div class="mini"><span class="dot"></span> Teamplay</div>
+            <a class="chip" href="#contact" onclick="scrollToId('contact')">Apply →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chip">📸 Social</div>
+          <div class="title">Instagram Highlights</div>
+          <p class="desc">Reels, clips aur updates Instagram pe.</p>
+          <div class="row">
+            <div class="mini"><span class="dot"></span> Daily posts</div>
+            <a class="chip" target="_blank" rel="noopener"
+               href="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5">Open Instagram →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights">
+      <div class="h2">
+        <h2>Highlights</h2>
+        <p>Why follow Zanitzu Gaming</p>
+      </div>
+
+      <div class="grid cols2">
+        <div class="card">
+          <div class="chip">🎥 Clips</div>
+          <div class="title">Best Stumble Moments</div>
+          <p class="desc">Wins, funny fails, and insane saves.</p>
+        </div>
+        <div class="card">
+          <div class="chip">🤝 Squad</div>
+          <div class="title">Clan Recruiting</div>
+          <p class="desc">Join for events, practice and fun community.</p>
+        </div>
+        <div class="card">
+          <div class="chip">📈 Growth</div>
+          <div class="title">Daily Updates</div>
+          <p class="desc">Instagram pe reels + highlights regularly.</p>
+        </div>
+        <div class="card">
+          <div class="chip">⚙️ Setup</div>
+          <div class="title">Tips & Settings</div>
+          <p class="desc">Sensitivity, controls, and gameplay tips.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="h2">
+        <h2>Clip Gallery</h2>
+        <p>Yahan aap apne real clip links add kar sakte ho</p>
+      </div>
+
+      <div class="gallery">
+        <div class="shot"><span>STUMBLE WIN</span></div>
+        <div class="shot"><span>LAST SECOND</span></div>
+        <div class="shot"><span>INSANE SAVE</span></div>
+        <div class="shot"><span>FUNNY FAIL</span></div>
+        <div class="shot"><span>CLUTCH MOVE</span></div>
+        <div class="shot"><span>TOP RUN</span></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="h2">
+        <h2>Contact / Join</h2>
+        <p>Message bhejo (demo form)</p>
+      </div>
+
+      <div class="grid cols2">
+        <div class="card">
+          <div class="chip">📌 Social Links</div>
+          <p class="desc" style="margin-top:10px">
+            Follow & connect:
+          </p>
+
+          <p class="mini" style="margin-top:12px; line-height:1.9">
+            <span class="dot"></span> Instagram:
+            <a class="chip" target="_blank" rel="noopener"
+               href="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5">@chinxx.ly</a>
+            <br/>
+            <span class="dot"></span> Discord: <b id="discordTag2">zanitzu#7777</b>
+          </p>
+
+          <button class="btn" style="margin-top:12px" onclick="copyTag()">Copy Discord Tag</button>
+        </div>
+
+        <div class="card">
+          <div class="chip">✉️ Send a Message</div>
+          <form onsubmit="submitForm(event)">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" type="email" placeholder="Email" required />
+            <textarea id="msg" placeholder="Message..."></textarea>
+            <button class="btn primary" type="submit">Send</button>
+            <p class="mini" id="formStatus"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> Zanitzu Gaming • Neon vibes ⚡
+    </div>
+  </main>
+
+  <script>
+    const navLinks = document.getElementById('navLinks');
+    const menuBtn = document.getElementById('menuBtn');
+
+    menuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    function scrollToId(id){
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+      navLinks.classList.remove('open');
+    }
+
+    function copyTag(){
+      const tag = document.getElementById('discordTag').innerText;
+      navigator.clipboard.writeText(tag).then(()=>{
+        alert("Copied: " + tag);
+      }).catch(()=>{
+        alert("Copy failed. Tag: " + tag);
+      });
+    }
+
+    function randomize(){
+      const kda = (Math.random()*3 + 1).toFixed(2);
+      const win = Math.floor(Math.random()*41 + 40) + "%";
+      const hrs = Math.floor(Math.random()*250 + 40);
+
+      document.getElementById('kda').innerText = kda;
+      document.getElementById('win').innerText = win;
+      document.getElementById('hrs').innerText = hrs;
+
+      document.querySelectorAll('.bar').forEach(b=>{
+        b.style.width = '0%';
+        requestAnimationFrame(()=> {
+          const w = b.getAttribute('data-w') || "60";
+          b.style.width = w + '%';
+        });
+      });
+    }
+
+    function submitForm(e){
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      const name = document.getElementById('name').value.trim();
+      status.textContent = "Thanks " + (name || "Gamer") + "! (Demo) Message sent ✅";
+      e.target.reset();
+      setTimeout(()=> status.textContent = "", 3500);
+    }
+
+    window.addEventListener('load', () => {
+      document.getElementById('year').innerText = new Date().getFullYear();
+      document.querySelectorAll('.bar').forEach((b, i)=>{
+        const w = b.getAttribute('data-w') || "60";
+        setTimeout(()=> b.style.width = w + '%', 120 + i*80);
+      });
+    });
+  </script>
+</body>
+</html>
