@@ -1,557 +1,1806 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zanitzu Gaming</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#070a14" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Krishna Bajaj • Free Fire Profile Dashboard — Stats, Rank, Guild & Socials." />
+
+  
+  <!-- Social share (nice preview) -->
+  <meta property="og:title" content="Krishna Bajaj • Free Fire Profile"/>
+  <meta property="og:description" content="Stats, Rank, Guild & Socials — Tap to open."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://i.pinimg.com/1200x/d9/81/92/d981921a072723c25d2047b930cd2c81.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Krishna Bajaj • Free Fire Profile"/>
+  <meta name="twitter:description" content="Stats, Rank, Guild & Socials — Tap to open."/>
+  <meta name="twitter:image" content="https://i.pinimg.com/1200x/d9/81/92/d981921a072723c25d2047b930cd2c81.jpg"/>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20128%20128%27%3E%0A%3Cdefs%3E%0A%20%20%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%0A%20%20%20%20%3Cstop%20offset%3D%270%27%20stop-color%3D%27%237c3aed%27/%3E%3Cstop%20offset%3D%270.55%27%20stop-color%3D%27%2306b6d4%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23f59e0b%27/%3E%0A%20%20%3C/linearGradient%3E%0A%3C/defs%3E%0A%3Crect%20width%3D%27128%27%20height%3D%27128%27%20rx%3D%2728%27%20fill%3D%27%23070a14%27/%3E%0A%3Cpath%20d%3D%27M74%206%2030%2070h30l-6%2052%2044-64H66z%27%20fill%3D%27url%28%23g%29%27/%3E%0A%3Cpath%20d%3D%27M30%2070h30%27%20stroke%3D%27rgba%28255%2C255%2C255%2C0.12%29%27%20stroke-width%3D%276%27%20stroke-linecap%3D%27round%27/%3E%0A%3C/svg%3E">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <title>Krishna Bajaj • Free Fire Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#070A12;
-      --card:#0C1020;
-      --text:#EAF0FF;
-      --muted:#9AA4C2;
-      --neon:#7C3AED;   /* purple */
-      --neon2:#22D3EE;  /* cyan */
-      --danger:#FF3B7A; /* pink */
-      --shadow: 0 0 24px rgba(124,58,237,.35), 0 0 18px rgba(34,211,238,.18);
-      --radius: 18px;
-      --max: 1100px;
+      --bg1:#070a14;
+      --bg2:#0f1733;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+
+      --accent1:#7c3aed;
+      --accent3:#06b6d4;
+
+      --shadow: 0 18px 60px rgba(0,0,0,0.38);
+      --radius: 22px;
+
+      --rgbA: 124, 58, 237;
+      --rgbB: 6, 182, 212;
+      --rgbC: 34, 197, 94;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+      font-family: 'Poppins', sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.25), transparent 60%),
-        radial-gradient(900px 500px at 90% 15%, rgba(34,211,238,.18), transparent 55%),
-        radial-gradient(800px 500px at 40% 90%, rgba(255,59,122,.12), transparent 55%),
-        linear-gradient(180deg, #050714 0%, #070A12 40%, #050714 100%);
+        radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,0.38), transparent 55%),
+        radial-gradient(900px 650px at 85% 18%, rgba(6,182,212,0.25), transparent 58%),
+        radial-gradient(900px 700px at 50% 95%, rgba(34,197,94,0.20), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-    .glow{
-      position:fixed; inset:-200px;
-      background: conic-gradient(from 180deg, rgba(124,58,237,.18), rgba(34,211,238,.14), rgba(255,59,122,.10), rgba(124,58,237,.18));
-      filter: blur(80px);
-      opacity:.35;
-      pointer-events:none;
-      animation: spin 14s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
+    /* RGB frame */
+    .siteRGBFrame{
+      position: fixed; inset: 12px; border-radius: 28px;
+      pointer-events: none; z-index: 9998; padding: 3px;
+      background: linear-gradient(90deg, rgba(var(--rgbA),1), rgba(var(--rgbB),1), rgba(var(--rgbC),1), rgba(var(--rgbA),1));
+      background-size: 420% 420%;
+      animation: siteRgbRun 6s linear infinite;
 
-    /* Nav */
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(7,10,18,.6);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .navin{max-width:var(--max); margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
-    .brand{display:flex; align-items:center; gap:10px;}
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, var(--neon), var(--neon2));
-      box-shadow: var(--shadow);
-      display:grid; place-items:center;
-      font-weight:800;
-    }
-    .brand span{font-weight:800; letter-spacing:.6px}
-    .links{display:flex; gap:14px; flex-wrap:wrap}
-    .links a{
-      padding:10px 12px; border-radius:12px;
-      color:var(--muted);
-      border:1px solid transparent;
-    }
-    .links a:hover{color:var(--text); border-color: rgba(124,58,237,.35); box-shadow: 0 0 0 3px rgba(124,58,237,.12);}
-    .cta{
-      padding:10px 14px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,211,238,.85));
-      box-shadow: var(--shadow);
-      font-weight:700;
-      border:0;
-      cursor:pointer;
-    }
-    .cta:active{transform: translateY(1px)}
-    .menuBtn{display:none}
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
 
-    /* Hero */
-    .hero{padding:44px 0 18px; display:grid; gap:18px; align-items:center; grid-template-columns: 1.2fr .8fr;}
-    .tag{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color: var(--muted);
-      width: fit-content;
+      box-shadow: 0 0 20px rgba(var(--rgbB),0.18), 0 0 38px rgba(var(--rgbA),0.12);
     }
-    .tag b{color:var(--text)}
-    h1{
-      margin:0;
-      font-size: clamp(34px, 5vw, 54px);
-      line-height: 1.05;
-      letter-spacing: .2px;
-    }
-    .grad{
-      background: linear-gradient(90deg, var(--neon2), var(--neon), var(--danger));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow: 0 0 18px rgba(34,211,238,.12);
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size: 16px;
-      line-height:1.7;
-      max-width: 58ch;
-    }
-    .heroBtns{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;}
-    .btn{
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:700;
-      cursor:pointer;
-    }
-    .btn:hover{border-color: rgba(34,211,238,.45); box-shadow: 0 0 0 3px rgba(34,211,238,.10);}
-    .btn.primary{
-      border:0;
-      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(255,59,122,.75));
-      box-shadow: var(--shadow);
-    }
-
-    .heroCard{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(600px 200px at 30% 20%, rgba(34,211,238,.20), transparent 60%),
-                  radial-gradient(500px 220px at 80% 60%, rgba(124,58,237,.18), transparent 60%);
-      pointer-events:none;
-    }
-    .stats{display:grid; grid-template-columns: repeat(2,1fr); gap:12px; margin-top:12px; position:relative;}
-    .stat{
-      background: rgba(7,10,18,.55);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      padding:12px;
-    }
-    .stat .k{font-size:22px; font-weight:900}
-    .stat .l{color:var(--muted); font-size:12px; margin-top:6px}
-    .meter{
-      height:10px; background: rgba(255,255,255,.06);
-      border-radius:999px; overflow:hidden; margin-top:10px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, var(--neon2), var(--neon), var(--danger));
-      box-shadow: var(--shadow);
-      transition: width 900ms ease;
-    }
-
-    section{padding:26px 0}
-    .h2{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;}
-    .h2 h2{margin:0; font-size:22px}
-    .h2 p{margin:0; color:var(--muted)}
-    .grid{display:grid; gap:14px; margin-top:14px}
-    .grid.cols3{grid-template-columns: repeat(3, 1fr)}
-    .grid.cols2{grid-template-columns: repeat(2, 1fr)}
-
-    .card{
-      background: rgba(12,16,32,.72);
-      border:1px solid rgba(255,255,255,.09);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 16px 50px rgba(0,0,0,.25);
-    }
-    .card:hover{border-color: rgba(124,58,237,.35); box-shadow: 0 0 0 3px rgba(124,58,237,.10), 0 18px 60px rgba(0,0,0,.35);}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px; border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      color:var(--muted);
-      font-size:12px;
-      width:fit-content;
-    }
-    .title{font-weight:900; margin:10px 0 6px; font-size:16px}
-    .desc{margin:0; color:var(--muted); line-height:1.65; font-size:14px}
-    .row{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px}
-    .mini{
-      font-size:12px; color:var(--muted);
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-    }
-    .dot{
-      width:6px; height:6px; border-radius:999px;
-      background: var(--neon2); box-shadow: 0 0 10px rgba(34,211,238,.5);
-      display:inline-block;
-    }
-
-    .gallery{
-      display:grid; gap:12px; margin-top:14px;
-      grid-template-columns: repeat(12, 1fr);
-    }
-    .shot{
-      grid-column: span 4;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(135deg, rgba(34,211,238,.20), rgba(124,58,237,.18)),
-        radial-gradient(900px 260px at 20% 20%, rgba(255,59,122,.16), transparent 60%);
-      min-height: 140px;
-      position:relative;
-      overflow:hidden;
-    }
-    .shot span{
-      position:absolute; left:14px; bottom:12px;
-      font-weight:800; letter-spacing:.3px;
-      color: rgba(234,240,255,.95);
-      text-shadow: 0 10px 30px rgba(0,0,0,.55);
-    }
-
-    form{display:grid; gap:10px; margin-top:14px}
-    input, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      outline:none;
-      font-size:14px;
-    }
-    input:focus, textarea:focus{
-      border-color: rgba(34,211,238,.55);
-      box-shadow: 0 0 0 3px rgba(34,211,238,.12);
-    }
-    textarea{min-height:110px; resize:vertical}
-    .footer{
-      padding:26px 0 40px;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,.06);
-      margin-top:22px;
-    }
-
-    @media (max-width: 920px){
-      .hero{grid-template-columns:1fr; padding-top:28px}
-      .grid.cols3{grid-template-columns: 1fr}
-      .grid.cols2{grid-template-columns: 1fr}
-      .shot{grid-column: span 6}
-      .menuBtn{display:inline-flex}
-      .links{display:none}
-      .links.open{display:flex; width:100%}
-      .navin{flex-wrap:wrap}
+    @keyframes siteRgbRun{
+      0%{ background-position: 0% 50%; }
+      100%{ background-position: 420% 50%; }
     }
     @media (max-width: 520px){
-      .shot{grid-column: span 12}
-      .stats{grid-template-columns: 1fr}
+      .siteRGBFrame{ inset: 8px; border-radius: 22px; padding: 2.5px; }
     }
+
+    .glass{
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .rgbBorder{ position: relative; border: 1px solid transparent !important; overflow:hidden; }
+    .rgbBorder::before{
+      content:"";
+      position:absolute; inset:-1px; border-radius: inherit;
+      background: linear-gradient(135deg, rgba(var(--rgbA), 0.55), rgba(var(--rgbB), 0.45), rgba(var(--rgbC), 0.45));
+      z-index: 0; pointer-events:none;
+    }
+    .rgbBorder::after{
+      content:"";
+      position:absolute; inset: 1px;
+      border-radius: calc(var(--radius) - 2px);
+      background: rgba(0,0,0,0.10);
+      z-index: 0; pointer-events:none;
+    }
+    .rgbContent{ position:relative; z-index:1; }
+
+    .btn{
+      border:0; color:white; font-weight:850;
+      padding: 12px 16px; border-radius: 16px; cursor:pointer;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      background: linear-gradient(135deg, var(--accent1), var(--accent3));
+      box-shadow: 0 12px 28px rgba(124,58,237,0.22);
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      user-select:none; white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 16px 34px rgba(124,58,237,0.28); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.secondary{
+      background: rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.16);
+      box-shadow:none;
+    }
+
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-weight:750; font-size: 13px;
+      user-select:none;
+    }
+
+    .screen{ display:none; animation: fadeUp .22s ease both; }
+    .screen.active{ display:block; }
+    @keyframes fadeUp{ from{ opacity:0 } to{ opacity:1 } }
+
+    /* ✅ Intro always center */
+    #screenIntro{
+      min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
+      display:flex; align-items:center; justify-content:center;
+      padding: 18px 14px;
+    }
+    .introCard{
+      width: min(960px, 92vw);
+      text-align:center;
+      padding: 34px;
+      position: relative;
+      overflow:hidden;
+    }
+    .introCard::before{
+      content:"";
+      position:absolute; inset:-80px;
+      background:
+        radial-gradient(240px 240px at 18% 24%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(280px 280px at 82% 30%, rgba(6,182,212,.22), transparent 60%),
+        radial-gradient(260px 260px at 52% 86%, rgba(34,197,94,.18), transparent 60%);
+      z-index:0;
+    }
+    .heroRow{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom: 16px; }
+    .heroTitle{ margin: 10px 0 10px; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; }
+    .heroName{
+      margin: 0 0 18px;
+      font-size: clamp(34px, 5.2vw, 58px);
+      font-weight: 950;
+      background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.62));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .heroSub{ margin:0 0 22px; color: var(--muted); font-size: 15px; line-height: 1.45; }
+
+    .wrap{
+      width:min(1100px, 92vw);
+      margin:0 auto;
+      padding: 28px 0 44px;
+      position: relative;
+      z-index: 2;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap; margin-bottom: 16px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 260px; }
+    .logo{
+      width:44px; height:44px; border-radius: 16px; overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      flex: 0 0 auto;
+    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .banner{
+      position:relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .banner.clickable{ cursor:pointer; transition: transform .14s ease; }
+    .banner.clickable:hover{ transform: translateY(-2px); }
+    .banner::before{
+      content:"";
+      position:absolute;
+      inset:-80px;
+      background:
+        radial-gradient(420px 240px at 12% 30%, rgba(124,58,237,0.35), transparent 60%),
+        radial-gradient(420px 240px at 86% 40%, rgba(6,182,212,0.22), transparent 60%),
+        radial-gradient(420px 240px at 50% 95%, rgba(34,197,94,0.18), transparent 62%);
+      z-index:0;
+      transform: rotate(-2deg);
+    }
+    .bannerInner{
+      position:relative; z-index:1;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+    }
+    .profileCard{ display:flex; align-items:center; gap:14px; min-width:260px; }
+
+    .avatar{
+      width:58px; height:58px;
+      border-radius: 20px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      flex: 0 0 auto;
+      position:relative;
+    }
+    .avatar::before{
+      content:"";
+      position:absolute;
+      inset:-3px;
+      border-radius:22px;
+      background:linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e,#7c3aed);
+      background-size:300% 300%;
+      animation:ringRun 5s linear infinite;
+      z-index:-1;
+    }
+    @keyframes ringRun{ 0%{background-position:0% 50%;} 100%{background-position:300% 50%;} }
+    .avatar img{ width:100%; height:100%; object-fit:cover; object-position:center top; transform:scale(1.1); display:block; }
+
+    .profileInfo .titleLine{ font-size: 18px; font-weight: 950; margin:0; line-height:1.1; }
+    .profileInfo .subLine{ margin:6px 0 0; color: var(--muted); font-size: 13px; line-height:1.2; }
+
+    .bannerBtns, .bannerRight{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
+
+    /* Dashboard grid/cards (same as before) */
+    .grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+      .bannerBtns, .bannerRight{ justify-content:flex-start; }
+    }
+
+    .card{ padding: 18px; border-radius: var(--radius); }
+    .cardTitleRow{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom: 10px;
+    }
+    .card h3{ margin:0; font-size: 16px; }
+    .smallNote{ color: var(--muted); font-size: 12px; }
+
+    .rankBadge{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(124,58,237,.20), rgba(6,182,212,.12));
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rankBadge::after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background: radial-gradient(260px 180px at 25% 40%, rgba(124,58,237,.35), transparent 60%),
+                  radial-gradient(260px 180px at 80% 55%, rgba(6,182,212,.22), transparent 60%);
+      filter: blur(10px);
+      opacity: .55;
+      animation: rankPulse 2.8s ease-in-out infinite;
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes rankPulse{
+      0%,100%{ transform: scale(0.98); opacity: .45; }
+      50%{ transform: scale(1.03); opacity: .75; }
+    }
+    .rankBadge .rgbContent{ position:relative; z-index:1; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+    .stats{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    @media (max-width: 520px){ .stats{ grid-template-columns: 1fr; } }
+    .statBox{
+      padding:14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+    }
+    .statLabel{ color: var(--muted); font-size: 12px; margin:0 0 6px; font-weight:800; }
+    .statVal{ font-size: 18px; font-weight: 950; margin:0; }
+
+    .progressWrap{ margin-top:8px; }
+    .progressBar{
+      width:100%; height:8px; border-radius:20px;
+      background:rgba(255,255,255,0.15);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .progressFill{
+      height:100%;
+      background:linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e);
+      width:0%;
+      transition:width 1.2s ease;
+    }
+
+    .contacts{ display:grid; gap:10px; margin-top: 10px; }
+    .contact{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      text-decoration:none;
+      color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .contact:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.08); }
+    .contact .left{ display:flex; align-items:center; gap:10px; min-width:0; }
+
+    .icon{
+      width:40px; height:40px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      user-select:none;
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .icon img{ width:22px; height:22px; display:block; filter: invert(1); opacity:.95; }
+    .icon.snap{
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(0,0,0,0.20);
+    }
+    .icon.snap svg{ width:22px; height:22px; fill:#000; display:block; }
+
+    .contact small{
+      color: var(--muted);
+      display:block;
+      margin-top:2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 340px;
+    }
+
+    footer{ margin-top: 16px; color: rgba(255,255,255,0.55); font-size: 12px; text-align:center; }
+
+    /* Snow only on dashboard */
+    #snowCanvas{
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none; display:none; opacity: 0.35;
+    }
+    #screenDash, #screenGuild, #screenMember{ position:relative; z-index: 2; }
+
+    /* Member numbering badge */
+    .numBadge{
+      min-width: 44px;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.25);
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed; bottom:30px; right:30px;
+      background:#111827; color:white;
+      padding:12px 18px; border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.4);
+      opacity:0; transform:translateY(20px);
+      transition:all .4s ease;
+      z-index:9999;
+    }
+    .toast.show{ opacity:1; transform:translateY(0); }
+
+    @media (max-width: 520px){
+      .introCard{ padding: 22px; border-radius: 20px; }
+      .banner{ padding: 14px; }
+      .avatar{ width: 54px; height: 54px; border-radius: 18px; }
+      .bannerBtns, .bannerRight{ width: 100%; justify-content: stretch; }
+      .bannerBtns .btn, .bannerRight .btn{ width: 100%; }
+      .card{ padding: 14px; }
+      .contact small{ max-width: 200px; }
+    }
+  
+#avatarBox img{
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.05);
+}
+
+
+    /* === Role special effects === */
+    .rolePill{
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .rolePill::before{
+      content:"";
+      position:absolute; inset:-40%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.0), rgba(255,255,255,0.35), rgba(255,255,255,0.0));
+      transform: translateX(-60%) rotate(20deg);
+      opacity: 0;
+      pointer-events:none;
+    }
+
+    /* LEADER (gold) */
+    .role-leader{
+      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(56,189,248,0.92), rgba(37,99,235,0.95));
+      color: #0b0b0f !important;
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.35), 0 12px 30px rgba(37,99,235,0.25);
+      animation: rolePulseLeader 1.9s ease-in-out infinite;
+      font-weight: 950;
+    }
+    .role-leader::after{
+      content:"👑";
+      position:absolute;
+      left:10px;
+      top:50%;
+      transform: translateY(-50%);
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+    }
+    .role-leader{ padding-left: 32px !important; }
+
+    @keyframes rolePulseLeader{
+      0%,100%{ filter: brightness(1) saturate(1.05); transform: translateY(0); }
+      50%{ filter: brightness(1.12) saturate(1.15); transform: translateY(-1px); }
+    }
+
+    /* ACTION LEADER (electric) */
+    .role-action{
+      background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92), rgba(236,72,153,0.95));
+      color: #ffffff !important;
+      box-shadow: 0 0 0 1px rgba(6,182,212,0.28), 0 12px 30px rgba(6,182,212,0.18);
+      animation: rolePulseAction 2.2s ease-in-out infinite;
+      font-weight: 950;
+    }
+    .role-action::after{
+      content:"👑";
+      position:absolute;
+      left:10px;
+      top:50%;
+      transform: translateY(-50%);
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+    }
+    .role-action{ padding-left: 34px !important; }
+
+    @keyframes rolePulseAction{
+      0%,100%{ filter: brightness(1) saturate(1.05); transform: translateY(0); }
+      50%{ filter: brightness(1.10) saturate(1.15); transform: translateY(-1px); }
+    }
+
+    /* Officer */
+    .role-officer{
+      background: linear-gradient(135deg, rgba(234,179,8,0.95), rgba(250,204,21,0.90));
+      color: #1a1a1a !important;
+      font-weight: 900;
+      box-shadow: none;
+      animation: none;
+    }
+
+    /* Shine sweep on hover for special roles */
+    .banner.clickable:hover .role-leader::before,
+    .banner.clickable:hover .role-action::before{
+      opacity: 1;
+      animation: roleShine 0.9s ease forwards;
+    }
+    @keyframes roleShine{
+      from{ transform: translateX(-60%) rotate(20deg); }
+      to{ transform: translateX(60%) rotate(20deg); }
+    }
+
+  
+/* ===============================
+   PRO POLISH (v1) — UI upgrade
+   (keeps your existing layout & JS)
+   =============================== */
+:root{
+  --radius: 22px;
+}
+
+/* Better overall rhythm */
+.wrap{ padding: 34px 0 54px; }
+header{ margin-bottom: 18px; }
+
+/* Cleaner glass */
+.glass{
+  background: rgba(255,255,255,0.075);
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.36);
+}
+
+/* Buttons: pro spacing + micro-interaction */
+.btn{
+  padding: 12px 18px;
+  border-radius: 16px;
+  letter-spacing: .2px;
+}
+.btn.secondary{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.btn:hover{ transform: translateY(-2px); }
+.btn:active{ transform: translateY(0px) scale(0.99); }
+
+/* Pills: cleaner */
+.pill{
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.07);
+  padding: 7px 12px;
+  font-weight: 850;
+}
+
+/* Banners: more premium */
+.banner{
+  padding: 18px 18px;
+  border-radius: 24px;
+}
+.banner::before{
+  opacity: .9;
+}
+.bannerInner{ gap: 16px; }
+.banner.clickable:hover{
+  transform: translateY(-3px);
+}
+.banner.clickable{
+  transition: transform .18s ease, filter .18s ease;
+}
+.banner.clickable:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(6,182,212,0.25), 0 18px 60px rgba(0,0,0,0.38);
+}
+
+/* Avatar: sharper and consistent */
+.avatar{
+  width: 60px; height: 60px;
+  border-radius: 20px;
+}
+.avatar img{
+  transform: scale(1.12);
+  object-position: center center;
+}
+
+/* Profile texts */
+.profileInfo .titleLine{
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+.profileInfo .subLine{
+  font-size: 13px;
+  letter-spacing: .15px;
+}
+
+/* Guild list: right side clean */
+.bannerRight{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.numBadge{
+  height: 36px;
+  min-width: 46px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.24);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Card headers: spacing */
+.cardTitleRow{ margin-bottom: 12px; }
+.card h3{ font-size: 16px; letter-spacing: .2px; }
+
+/* Contacts: cleaner tiles */
+.contact{
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+.contact:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Role pill inside subline: visually tidy */
+.profileInfo .subLine .pill{
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+}
+
+/* Mobile polish */
+@media (max-width: 520px){
+  .wrap{ padding: 24px 0 44px; }
+  .banner{ padding: 14px; border-radius: 20px; }
+  .avatar{ width: 56px; height: 56px; }
+  .profileInfo .titleLine{ font-size: 16px; }
+}
+
+
+/* ===============================
+   ROLE COLORS LOCK (v2)
+   Ensures Pro CSS doesn't override role styles
+   =============================== */
+.pill.rolePill.role-leader{
+  background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(56,189,248,0.92), rgba(37,99,235,0.95)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(56,189,248,0.35), 0 12px 30px rgba(37,99,235,0.25) !important;
+  font-weight: 950 !important;
+}
+.pill.rolePill.role-action{
+  background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92), rgba(236,72,153,0.95)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(236,72,153,0.28), 0 12px 30px rgba(168,85,247,0.20) !important;
+  font-weight: 950 !important;
+}
+.pill.rolePill.role-officer{
+  background: linear-gradient(135deg, rgba(234,179,8,0.95), rgba(250,204,21,0.90)) !important;
+  color: #1a1a1a !important;
+  box-shadow: none !important;
+  font-weight: 900 !important;
+}
+
+/* Keep crown icons visible on colored pills */
+.pill.rolePill.role-leader::after{ content:"👑" !important; }
+.pill.rolePill.role-action::after{ content:"👑" !important; }
+
+
+/* ===============================
+   INTRO CTA UPGRADE (v4)
+   =============================== */
+.introCtaRow{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top: 4px;
+}
+.introBtn{
+  min-width: 210px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  font-size: 15px;
+}
+.introBtn.secondary{
+  background: rgba(255,255,255,0.10);
+}
+.introBtn:hover{
+  box-shadow: 0 18px 42px rgba(6,182,212,0.14), 0 18px 42px rgba(124,58,237,0.14);
+}
+.introHint{
+  margin-top: 14px;
+  color: rgba(255,255,255,0.70);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: .2px;
+  animation: introHintPulse 1.9s ease-in-out infinite;
+}
+@keyframes introHintPulse{
+  0%,100%{ opacity: .75; transform: translateY(0); }
+  50%{ opacity: 1; transform: translateY(-2px); }
+}
+
+@media (max-width: 520px){
+  .introBtn{ width: 100%; min-width: unset; }
+}
+
+
+
+/* ===============================
+   EXTRA POLISH + ACCESSIBILITY (v5)
+   Safe overrides only (no layout break)
+   =============================== */
+
+html{ scroll-behavior: smooth; }
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection{
+  background: rgba(6,182,212,0.28);
+  color: rgba(255,255,255,0.96);
+}
+
+a, button{
+  -webkit-tap-highlight-color: transparent;
+}
+
+.avatar{ isolation: isolate; }
+
+/* Consistent keyboard focus */
+.btn:focus-visible,
+.contact:focus-visible,
+.banner.clickable:focus-visible{
+  outline: 3px solid rgba(6,182,212,0.45);
+  outline-offset: 3px;
+}
+
+.banner.clickable:focus-visible{
+  transform: translateY(-2px);
+}
+
+/* Smoother scrolling feel on desktop */
+@media (pointer:fine){
+  ::-webkit-scrollbar{ width: 10px; }
+  ::-webkit-scrollbar-track{ background: rgba(0,0,0,0.18); }
+  ::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,0.16);
+    border-radius: 999px;
+    border: 2px solid rgba(0,0,0,0.25);
+  }
+  ::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,0.22); }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  #snowCanvas{ display: none !important; }
+}
+
+
+
+    /* =========================================================
+       EXTRA "MAST" POLISH PACK (safe additions, no break)
+       ========================================================= */
+
+    /* Soft moving aura + subtle grain (disabled for reduced motion) */
+    body::before{
+      content:"";
+      position: fixed;
+      inset:-20%;
+      pointer-events:none;
+      z-index:0;
+      background:
+        radial-gradient(900px 650px at 20% 18%, rgba(245,158,11,0.12), transparent 60%),
+        radial-gradient(900px 650px at 75% 80%, rgba(124,58,237,0.14), transparent 62%),
+        radial-gradient(900px 650px at 70% 20%, rgba(6,182,212,0.10), transparent 60%);
+      filter: blur(10px);
+      opacity: .85;
+      transform: translate3d(0,0,0);
+      animation: auraDrift 16s ease-in-out infinite alternate;
+    }
+    body::after{
+      content:"";
+      position: fixed;
+      inset:-40%;
+      pointer-events:none;
+      z-index:0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.010) 0 1px, transparent 1px 4px);
+      mix-blend-mode: overlay;
+      opacity: .25;
+      animation: grainMove 7s steps(10) infinite;
+    }
+    @keyframes auraDrift{
+      0%{ transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(-1deg); }
+      100%{ transform: translate3d(2%, 1%, 0) scale(1.05) rotate(1deg); }
+    }
+    @keyframes grainMove{
+      0%{ transform: translate3d(0,0,0); }
+      100%{ transform: translate3d(-3%, 2%, 0); }
+    }
+
+    /* FX canvas (sparks / confetti style) */
+    #fxCanvas{
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      display:block;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+    }
+
+    /* Make hero feel more premium */
+    .heroTitle{
+      letter-spacing: 0.4px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+    .heroName{
+      position: relative;
+      background-size: 200% 200%;
+      animation: nameShimmer 5.5s ease-in-out infinite;
+      text-shadow: 0 18px 60px rgba(0,0,0,0.40);
+    }
+    .heroName::after{
+      content:"";
+      position:absolute;
+      left: 50%;
+      bottom: -10px;
+      transform: translateX(-50%);
+      width: min(320px, 70%);
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, rgba(var(--rgbA),0.0), rgba(var(--rgbB),0.55), rgba(245,158,11,0.35), rgba(var(--rgbA),0.0));
+      filter: blur(.2px);
+      opacity: .9;
+    }
+    @keyframes nameShimmer{
+      0%{ background-position: 0% 40%; }
+      50%{ background-position: 100% 60%; }
+      100%{ background-position: 0% 40%; }
+    }
+
+    .heroType{
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.74);
+      min-height: 18px;
+      letter-spacing: 0.25px;
+    }
+    .microBadges{
+      margin: 14px auto 6px;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .badge{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 12px;
+      color: rgba(255,255,255,0.86);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+      position: relative;
+      overflow:hidden;
+    }
+    .badge::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(220px 60px at 20% 20%, rgba(255,255,255,0.13), transparent 60%);
+      opacity:.75;
+      pointer-events:none;
+    }
+
+    /* Animate rgbBorder gradient a bit more (still subtle) */
+    .rgbBorder::before{
+      background-size: 260% 260%;
+      animation: rgbFlow 10s linear infinite;
+    }
+    @keyframes rgbFlow{
+      0%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+      100%{ background-position: 0% 50%; }
+    }
+
+    /* Extra hover magic */
+    .card, .banner, .introCard{
+      will-change: transform;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    @media (hover:hover){
+      .card:hover, .banner:hover, .introCard:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 22px 70px rgba(0,0,0,0.42);
+      }
+      .contact:hover{
+        transform: translateY(-1px);
+      }
+    }
+
+    /* Ripple effect (for buttons + contacts) */
+    .btn, .contact{ position: relative; overflow: hidden; }
+    .rippleDot{
+      position:absolute;
+      border-radius: 999px;
+      transform: translate(-50%,-50%);
+      pointer-events:none;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,255,255,0.0) 60%);
+      animation: ripplePop .65s ease-out forwards;
+    }
+    @keyframes ripplePop{
+      0%{ opacity: .0; transform: translate(-50%,-50%) scale(0.6); }
+      10%{ opacity: .9; }
+      100%{ opacity: 0; transform: translate(-50%,-50%) scale(18); }
+    }
+
+    /* Reduced motion: keep things calm */
+    @media (prefers-reduced-motion: reduce){
+      body::before, body::after, .heroName, .rgbBorder::before, .siteRGBFrame{ animation: none !important; }
+      .card, .banner, .introCard{ transition:none !important; }
+      .rippleDot{ animation: none !important; opacity: 0 !important; }
+    }
+
+  
+/* ===============================
+   RESPONSIVE + COMPAT PACK (v1)
+   Phone + PC + Tablet friendly
+   =============================== */
+
+/* Avoid iOS font zoom quirks */
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Better safe-area handling (notch phones) */
+#screenIntro{
+  padding:
+    calc(18px + env(safe-area-inset-top, 0px))
+    calc(14px + env(safe-area-inset-right, 0px))
+    calc(18px + env(safe-area-inset-bottom, 0px))
+    calc(14px + env(safe-area-inset-left, 0px));
+}
+.wrap{
+  padding-left: calc(env(safe-area-inset-left, 0px));
+  padding-right: calc(env(safe-area-inset-right, 0px));
+  padding-top: calc(28px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(44px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Decorative frame won't clash with notches */
+.siteRGBFrame{
+  top: max(12px, env(safe-area-inset-top, 0px));
+  left: max(12px, env(safe-area-inset-left, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  bottom: max(12px, env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 520px){
+  .siteRGBFrame{
+    top: max(8px, env(safe-area-inset-top, 0px));
+    left: max(8px, env(safe-area-inset-left, 0px));
+    right: max(8px, env(safe-area-inset-right, 0px));
+    bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Prevent overflow on narrow screens */
+.grid{
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+}
+.brand, .profileCard, .profileInfo, .bannerInner, .contacts, .contact .left{
+  min-width: 0;
+}
+.profileInfo .titleLine, .profileInfo .subLine, .statVal, .contact small{
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Touch-friendly tap targets */
+.btn, .contact{
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Disable hover transforms on touch devices (prevents "stuck" hover) */
+@media (hover: none){
+  .btn:hover,
+  .banner.clickable:hover,
+  .contact:hover,
+  .card:hover,
+  .introCard:hover{
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Backdrop blur fallback for older browsers */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+  .glass{
+    background: rgba(10, 14, 28, 0.88) !important;
+  }
+}
+
+/* Canvas performance: keep it behind content */
+#fxCanvas, #snowCanvas{
+  will-change: transform;
+}
+
+
   </style>
 </head>
 
 <body>
-  <div class="glow"></div>
+  <div class="siteRGBFrame" aria-hidden="true"></div>
+  <canvas id="snowCanvas"></canvas>
+  <canvas id="fxCanvas" aria-hidden="true"></canvas>
 
-  <header class="nav">
-    <div class="navin">
-      <a class="brand" href="#top">
-        <div class="logo">ZG</div>
-        <span>Zanitzu Gaming</span>
-      </a>
+  <!-- INTRO -->
+  <section id="screenIntro" class="screen active">
+    <div class="introCard glass rgbBorder">
+      <div class="rgbContent">
+        <div class="heroRow">
+          <span class="pill">🔥 Free Fire</span>
+          <span class="pill">📊 Stats</span>
+          <span class="pill">🏆 Rank</span>
+          <span class="pill">👥 Guild</span>
+        </div>
 
-      <button class="btn menuBtn" id="menuBtn">Menu</button>
+        <h1 class="heroTitle">Welcome to my world</h1>
+        <div class="heroName">Krishna Bajaj</div>
+        <p class="heroSub">Choose what you want to open.</p>
 
-      <nav class="links" id="navLinks">
-        <a href="#games">Games</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <div class="heroType" id="heroType" aria-live="polite">⚡ Thunder vibes loading…</div>
+        <div class="microBadges" aria-label="Highlights">
+          <span class="badge">⚡ Thunder Mode</span>
+          <span class="badge">🎮 Free Fire</span>
+          <span class="badge">💛 Zenitzu Vibes</span>
+        </div>
 
-      <button class="cta" onclick="scrollToId('contact')">Join Squad</button>
+
+        <div class="introCtaRow">
+          <button class="btn introBtn" id="aboutMeBtn">👤 About Me</button>
+          <button class="btn secondary introBtn" id="aboutGuildBtn">🛡️ About Guild</button>
+        </div>
+        <div class="introHint">👇 Tap any button to continue</div>
+
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main class="wrap" id="top">
-    <section class="hero">
-      <div>
-        <div class="tag">🎮 <b>Live</b> • Stumble Guys • Community</div>
-        <h1>
-          Welcome to <span class="grad">Zanitzu Gaming</span>
-        </h1>
-        <p class="sub">
-          Dark neon gamer vibe website — yahan aap apne Stumble Guys clips, squad info,
-          tournaments aur socials easily show kar sakte ho.
-        </p>
-        <div class="heroBtns">
-          <button class="btn primary" onclick="scrollToId('games')">Explore</button>
-          <button class="btn" onclick="copyTag()">Copy Discord Tag</button>
-          <button class="btn" onclick="scrollToId('gallery')">See Clips</button>
-        </div>
-        <p class="mini" style="margin-top:14px;">
-          <span class="dot"></span> Squad • <span class="dot"></span> Clips • <span class="dot"></span> Rank grind
-        </p>
-      </div>
+  <!-- DASHBOARD (✅ PEHLE JAISA) -->
+  <section id="screenDash" class="screen">
+    <div class="wrap">
 
-      <div class="heroCard">
-        <div class="chip">⚡ Season Stats</div>
-        <div class="title" style="font-size:18px; margin-top:10px;">Player Stats</div>
-        <p class="desc">Numbers ko aap apne hisaab se update kar sakte ho.</p>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="k" id="kda">2.90</div>
-            <div class="l">K/D Ratio</div>
-            <div class="meter"><div class="bar" data-w="70"></div></div>
-          </div>
-          <div class="stat">
-            <div class="k" id="win">61%</div>
-            <div class="l">Win Rate</div>
-            <div class="meter"><div class="bar" data-w="61"></div></div>
-          </div>
-          <div class="stat">
-            <div class="k" id="rank">Champion</div>
-            <div class="l">Rank</div>
-            <div class="meter"><div class="bar" data-w="88"></div></div>
-          </div>
-          <div class="stat">
-            <div class="k" id="hrs">140</div>
-            <div class="l">Hours Played</div>
-            <div class="meter"><div class="bar" data-w="66"></div></div>
+      <header>
+        <div class="brand">
+          <div class="logo" id="logoBox"></div>
+          <div>
+            <h2 style="margin:0;font-size:18px;line-height:1.15;">Krishna Bajaj</h2>
+            <p style="margin:0;color:var(--muted);font-size:13px;">Free Fire Profile Dashboard</p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="mini">
-            <span class="dot"></span> Discord: <b id="discordTag">zanitzu#7777</b>
-          </div>
-          <button class="btn" onclick="randomize()">Randomize</button>
+        <div class="bannerBtns">
+          <button class="btn secondary" id="homeBtn">🏠 Home</button>
+          <button class="btn secondary" id="guildFromDashBtn">🛡️ About Guild</button>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <section id="games">
-      <div class="h2">
-        <h2>Main Game</h2>
-        <p>Clan game info</p>
-      </div>
-
-      <div class="grid cols3">
-        <div class="card">
-          <div class="chip">🔥 Featured</div>
-          <div class="title">Stumble Guys</div>
-          <p class="desc">Fast rounds • clutch plays • squad wins • insane comebacks.</p>
-          <div class="row">
-            <div class="mini"><span class="dot"></span> Movement • Timing</div>
-            <a class="chip" href="#gallery" onclick="scrollToId('gallery')">View Clips →</a>
+      <div class="banner glass rgbBorder">
+        <div class="rgbContent bannerInner">
+          <div class="profileCard">
+            <div class="avatar" id="avatarBox"></div>
+            <div class="profileInfo">
+              <p class="titleLine" id="bannerUID">UID: 1730900069 • Rank: Heroic</p>
+              <p class="subLine" id="bannerIGN">IGN: Zenitzu</p>
+            </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="chip">🏆 Clan</div>
-          <div class="title">Zanitzu Squad</div>
-          <p class="desc">Recruiting active players • friendly + competitive vibe.</p>
-          <div class="row">
-            <div class="mini"><span class="dot"></span> Teamplay</div>
-            <a class="chip" href="#contact" onclick="scrollToId('contact')">Apply →</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="chip">📸 Social</div>
-          <div class="title">Instagram Highlights</div>
-          <p class="desc">Reels, clips aur updates Instagram pe.</p>
-          <div class="row">
-            <div class="mini"><span class="dot"></span> Daily posts</div>
-            <a class="chip" target="_blank" rel="noopener"
-               href="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5">Open Instagram →</a>
+          <div class="bannerBtns">
+            <button class="btn secondary" id="copyUidBtn">📋 Copy UID</button>
+            <button class="btn" id="shareWaBtn">🟢 Share WhatsApp</button>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="highlights">
-      <div class="h2">
-        <h2>Highlights</h2>
-        <p>Why follow Zanitzu Gaming</p>
-      </div>
+      <div class="grid">
+        <!-- Stats -->
+        <div class="card glass rgbBorder">
+          <div class="rgbContent">
+            <div class="cardTitleRow">
+              <h3>📊 Free Fire Stats</h3>
+              <span class="smallNote">Fixed public profile</span>
+            </div>
 
-      <div class="grid cols2">
-        <div class="card">
-          <div class="chip">🎥 Clips</div>
-          <div class="title">Best Stumble Moments</div>
-          <p class="desc">Wins, funny fails, and insane saves.</p>
-        </div>
-        <div class="card">
-          <div class="chip">🤝 Squad</div>
-          <div class="title">Clan Recruiting</div>
-          <p class="desc">Join for events, practice and fun community.</p>
-        </div>
-        <div class="card">
-          <div class="chip">📈 Growth</div>
-          <div class="title">Daily Updates</div>
-          <p class="desc">Instagram pe reels + highlights regularly.</p>
-        </div>
-        <div class="card">
-          <div class="chip">⚙️ Setup</div>
-          <div class="title">Tips & Settings</div>
-          <p class="desc">Sensitivity, controls, and gameplay tips.</p>
-        </div>
-      </div>
-    </section>
+            <div class="rankBadge rgbBorder" style="border-radius:18px;">
+              <div class="rgbContent" style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:12px;">
+                <div>
+                  <strong id="rankName">Heroic</strong>
+                  <div><span style="color:rgba(255,255,255,0.68); font-size:13px;">Current Rank</span></div>
+                </div>
+                <div class="pill" id="rankPoints">Points: 3200</div>
+              </div>
+            </div>
 
-    <section id="gallery">
-      <div class="h2">
-        <h2>Clip Gallery</h2>
-        <p>Yahan aap apne real clip links add kar sakte ho</p>
-      </div>
+            <div class="stats">
+              <div class="statBox">
+                <p class="statLabel">UID / IGN</p>
+                <p class="statVal" id="uidIgn">UID: 1730900069 • IGN: Zenitzu</p>
+              </div>
 
-      <div class="gallery">
-        <div class="shot"><span>STUMBLE WIN</span></div>
-        <div class="shot"><span>LAST SECOND</span></div>
-        <div class="shot"><span>INSANE SAVE</span></div>
-        <div class="shot"><span>FUNNY FAIL</span></div>
-        <div class="shot"><span>CLUTCH MOVE</span></div>
-        <div class="shot"><span>TOP RUN</span></div>
-      </div>
-    </section>
+              <div class="statBox">
+                <p class="statLabel">Level</p>
+                <p class="statVal" id="level">Lv. 69</p>
+              </div>
 
-    <section id="contact">
-      <div class="h2">
-        <h2>Contact / Join</h2>
-        <p>Message bhejo (demo form)</p>
-      </div>
+              <div class="statBox">
+                <p class="statLabel">K/D Ratio</p>
+                <p class="statVal" id="kd">2.35</p>
+                <div class="progressWrap"><div class="progressBar"><div class="progressFill" id="kdBar"></div></div></div>
+              </div>
 
-      <div class="grid cols2">
-        <div class="card">
-          <div class="chip">📌 Social Links</div>
-          <p class="desc" style="margin-top:10px">
-            Follow & connect:
-          </p>
+              <div class="statBox">
+                <p class="statLabel">Win Rate</p>
+                <p class="statVal" id="winrate">18%</p>
+                <div class="progressWrap"><div class="progressBar"><div class="progressFill" id="winBar"></div></div></div>
+              </div>
 
-          <p class="mini" style="margin-top:12px; line-height:1.9">
-            <span class="dot"></span> Instagram:
-            <a class="chip" target="_blank" rel="noopener"
-               href="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5">@chinxx.ly</a>
-            <br/>
-            <span class="dot"></span> Discord: <b id="discordTag2">zanitzu#7777</b>
-          </p>
+              <div class="statBox">
+                <p class="statLabel">Matches Played</p>
+                <p class="statVal" id="matches">1420</p>
+              </div>
 
-          <button class="btn" style="margin-top:12px" onclick="copyTag()">Copy Discord Tag</button>
+              <div class="statBox">
+                <p class="statLabel">Headshots</p>
+                <p class="statVal" id="headshots">410</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="chip">✉️ Send a Message</div>
-          <form action="https://formsubmit.co/krishnabajaj643@gmail.com" method="POST"
-      style="display:grid; gap:10px; margin-top:12px">
+        <!-- Contacts -->
+        <div class="card glass rgbBorder">
+          <div class="rgbContent">
+            <div class="cardTitleRow">
+              <h3>📱 Contacts</h3>
+              <span class="smallNote">Tap to open</span>
+            </div>
 
-  <input type="hidden" name="_subject" value="New message from Zanitzu Gaming website">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
+            <div class="contacts">
+              <a class="contact"
+                 href="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5"
+                 id="instaLink"
+                 data-username="chinxx.ly"
+                 data-web="https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5"
+                 target="_blank" rel="noopener noreferrer">
+                <div class="left">
+                  <div class="icon" aria-hidden="true">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="" loading="lazy" decoding="async">
+                  </div>
+                  <div>
+                    <div>Instagram</div>
+                    <small>@chinxx.ly</small>
+                  </div>
+                </div>
+                <span class="pill">Open</span>
+              </a>
 
-  <input name="name" placeholder="Your name" required
-         style="padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
-                background:rgba(255,255,255,.04);color:#fff;" />
+              <a class="contact" href="https://wa.me/919399767057" target="_blank" rel="noopener noreferrer">
+                <div class="left">
+                  <div class="icon" aria-hidden="true">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/whatsapp.svg" alt="" loading="lazy" decoding="async">
+                  </div>
+                  <div>
+                    <div>WhatsApp</div>
+                    <small>+91 93997 67057</small>
+                  </div>
+                </div>
+                <span class="pill">Chat</span>
+              </a>
 
-  <input name="email" type="email" placeholder="Email" required
-         style="padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
-                background:rgba(255,255,255,.04);color:#fff;" />
+              <a class="contact" href="https://www.snapchat.com/add/mikey-1523?share_id=EEDtoe1uNVc&locale=en-US" target="_blank" rel="noopener noreferrer">
+                <div class="left">
+                  <div class="icon snap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" aria-label="Snapchat">
+                      <path d="M12 2c3.3 0 5.9 2.7 5.9 6 0 1.4-.2 2.3-.2 3 0 .7.6 1.1 1.4 1.4.8.3 1.5.4 1.5 1.2 0 .5-.4.9-1.4 1.2-.8.2-1.6.3-2 .8-.4.4-.3 1.1-.7 1.6-.5.6-1.5.6-2.3.5-.9-.1-1.7-.3-2.6.3-.8.6-1.3 1.6-2.1 1.6s-1.3-1-2.1-1.6c-.9-.6-1.7-.4-2.6-.3-.8.1-1.8.1-2.3-.5-.4-.5-.3-1.2-.7-1.6-.4-.5-1.2-.6-2-.8C3.4 17.6 3 17.2 3 16.7c0-.8.7-.9 1.5-1.2.8-.3 1.4-.7 1.4-1.4 0-.7-.2-1.6-.2-3 0-3.3 2.6-6 5.9-6z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div>Snapchat</div>
+                    <small>@mikey-1523</small>
+                  </div>
+                </div>
+                <span class="pill">Open</span>
+              </a>
 
-  <textarea name="message" placeholder="Message..."
-            style="min-height:110px;resize:vertical;padding:12px;border-radius:14px;
-                   border:1px solid rgba(255,255,255,.10);
-                   background:rgba(255,255,255,.04);color:#fff;"></textarea>
+              <a class="contact" href="https://facebook.com/your.profile" target="_blank" rel="noopener noreferrer">
+                <div class="left">
+                  <div class="icon" aria-hidden="true">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="" loading="lazy" decoding="async">
+                  </div>
+                  <div>
+                    <div>Facebook</div>
+                    <small>facebook.com/your.profile</small>
+                  </div>
+                </div>
+                <span class="pill">Open</span>
+              </a>
 
-  <button type="submit"
-          style="padding:12px;border-radius:14px;border:0;
-                 background:linear-gradient(135deg,#7C3AED,#22D3EE);
-                 color:#fff;font-weight:800;cursor:pointer;">
-    Send Message
-  </button>
-</form>
-
+              <a class="contact" href="mailto:Krishnabajaj643@gmail.com">
+                <div class="left">
+                  <div class="icon" aria-hidden="true">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="" loading="lazy" decoding="async">
+                  </div>
+                  <div>
+                    <div>Gmail</div>
+                    <small>Krishnabajaj643@gmail.com</small>
+                  </div>
+                </div>
+                <span class="pill">Mail</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <div class="footer">
-      © <span id="year"></span> Zanitzu Gaming • Neon vibes ⚡
+      <footer>
+        © <span id="year"></span> Krishna Bajaj All rights reserved • Built for Free Fire
+      </footer>
     </div>
-  </main>
+  </section>
+
+  <!-- GUILD -->
+  <section id="screenGuild" class="screen">
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" id="guildLogoBox"></div>
+          <div>
+            <h2 style="margin:0;font-size:18px;line-height:1.15;">About Guild</h2>
+            <p style="margin:0;color:var(--muted);font-size:13px;">Tap any member banner</p>
+          </div>
+        </div>
+
+        <div class="bannerBtns">
+          <button class="btn secondary" id="backToDashBtn">⬅ Back</button>
+          <button class="btn secondary" id="homeFromGuildBtn">🏠 Home</button>
+        </div>
+      </header>
+
+      <div id="guildBanners"></div>
+
+      <footer>© <span id="year2"></span> Krishna Bajaj</footer>
+    </div>
+  </section>
+
+  <!-- MEMBER DETAILS -->
+  <section id="screenMember" class="screen">
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" id="memberLogoBox"></div>
+          <div>
+            <h2 style="margin:0;font-size:18px;line-height:1.15;" id="memberTitle">Member Details</h2>
+            <p style="margin:0;color:var(--muted);font-size:13px;">Instagram & Snapchat only</p>
+          </div>
+        </div>
+
+        <div class="bannerBtns">
+          <button class="btn secondary" id="backToGuildBtn">⬅ Back to Guild</button>
+          <button class="btn secondary" id="homeFromMemberBtn">🏠 Home</button>
+        </div>
+      </header>
+
+      <div class="card glass rgbBorder">
+        <div class="rgbContent">
+          <div class="cardTitleRow">
+            <h3>📱 Contacts</h3>
+            <span class="smallNote" id="memberNumberNote">Member #</span>
+          </div>
+
+          <div class="contacts" id="memberContacts"></div>
+        </div>
+      </div>
+
+      <footer>© <span id="year3"></span> Krishna Bajaj</footer>
+    </div>
+  </section>
 
   <script>
-    const navLinks = document.getElementById('navLinks');
-    const menuBtn = document.getElementById('menuBtn');
+    /***************
+     * Profile data (same as before)
+     ***************/
+    const PROFILE_IMG = "https://i.pinimg.com/1200x/d9/81/92/d981921a072723c25d2047b930cd2c81.jpg";
 
-    menuBtn?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+    const DATA = {
+      uid: "1730900069",
+      ign: "Zenitzu",
+      rankName: "Heroic",
+      rankPoints: "Points: 3200",
+      level: "Lv. 69",
+      kd: "2.35",
+      winrate: "18%",
+      matches: "1420",
+      headshots: "410"
+    };
 
-    function scrollToId(id){
-      document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
-      navLinks.classList.remove('open');
+    /***************
+     * ✅ MEMBERS (EDIT THIS LIST)
+     ***************/
+    const MEMBERS = [
+      { name:"Zenitzu", image:"https://pbs.twimg.com/media/F6peec5XYAA69Za.jpg", instagramName:"chinxx.ly", instagramLink:"https://www.instagram.com/chinxx.ly?igsh=d2R5eThsNTQ2NWw5", snapchatName:"mikey-1523", snapchatLink:"https://www.snapchat.com/add/mikey-1523?share_id=EEDtoe1uNVc&locale=en-US" },
+      { name:"Nezuko", image:"https://i.redd.it/9ukoufqfyyqf1.jpeg", instagramName:"member2_ig", instagramLink:"https://instagram.com/member2_ig", snapchatName:"member2_snap", snapchatLink:"https://www.snapchat.com/add/member2_snap" },
+      { name:"Tanjiro", image:"https://img.etimg.com/thumb/msid-128146158,width-650,height-488,imgsize-1444919,resizemode-75/demon-slayer-the-hinokami-chronicles-2.jpg", instagramName:"member3_ig", instagramLink:"https://instagram.com/member3_ig", snapchatName:"member3_snap", snapchatLink:"https://www.snapchat.com/add/member3_snap" },
+      { name:"Inosuke", image:"https://i.pinimg.com/736x/65/67/8e/65678efae998e250fe126a190144b300.jpg", instagramName:"member4_ig", instagramLink:"https://instagram.com/member4_ig", snapchatName:"member4_snap", snapchatLink:"https://www.snapchat.com/add/member4_snap" },
+      { name:"Gojo", image:"https://upload.wikimedia.org/wikipedia/it/thumb/7/77/Satoru_Gojo.jpg/1280px-Satoru_Gojo.jpg", instagramName:"member5_ig", instagramLink:"https://instagram.com/member5_ig", snapchatName:"member5_snap", snapchatLink:"https://www.snapchat.com/add/member5_snap" }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    function on(id, ev, fn){ const el = $(id); if(el) el.addEventListener(ev, fn); }
+
+    function setBoxImage(id){
+      const box = $(id);
+      if(!box) return;
+      box.innerHTML = `<img src="${PROFILE_IMG}" alt="Profile" loading="lazy" decoding="async">`;
     }
 
-    function copyTag(){
-      const tag = document.getElementById('discordTag').innerText;
-      navigator.clipboard.writeText(tag).then(()=>{
-        alert("Copied: " + tag);
-      }).catch(()=>{
-        alert("Copy failed. Tag: " + tag);
+    function show(screenId){
+      ["screenIntro","screenDash","screenGuild","screenMember"].forEach(s => {
+        const el = $(s);
+        if(!el) return;
+        el.classList.remove("active");
+        el.style.display = "none";
+      });
+      const target = $(screenId);
+      if(target){
+        target.classList.add("active");
+        // ✅ Keep Intro permanently centered (flex), others normal (block)
+        target.style.display = (screenId === "screenIntro") ? "flex" : "block";
+      }
+      try{ window.scrollTo({ top: 0, behavior: "smooth" }); }catch{ window.scrollTo(0,0); }
+    }
+
+    function showDash(){
+      show("screenDash");
+      $("snowCanvas").style.display = "block";
+      startSnow();
+      setTimeout(animateStats, 350);
+    }
+    function showIntro(){
+      show("screenIntro");
+      $("snowCanvas").style.display = "none";
+      stopSnow();
+    }
+    function showGuild(){
+      show("screenGuild");
+      $("snowCanvas").style.display = "none";
+      stopSnow();
+    }
+    function showMember(i){
+      const m = MEMBERS[i];
+      if(!m) return;
+
+      show("screenMember");
+
+      $("memberTitle").textContent = `👤 ${m.name}`;
+      $("memberNumberNote").textContent = `Member #${i+1}`;
+
+      const contacts = $("memberContacts");
+      contacts.innerHTML = `
+        <a class="contact" href="${m.instagramLink}" target="_blank" rel="noopener noreferrer">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="" loading="lazy" decoding="async">
+            </div>
+            <div>
+              <div>Instagram</div>
+              <small>@${m.instagramName}</small>
+            </div>
+          </div>
+          <span class="pill">Open</span>
+        </a>
+
+        <a class="contact" href="${m.snapchatLink}" target="_blank" rel="noopener noreferrer">
+          <div class="left">
+            <div class="icon snap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img" aria-label="Snapchat">
+                <path d="M12 2c3.3 0 5.9 2.7 5.9 6 0 1.4-.2 2.3-.2 3 0 .7.6 1.1 1.4 1.4.8.3 1.5.4 1.5 1.2 0 .5-.4.9-1.4 1.2-.8.2-1.6.3-2 .8-.4.4-.3 1.1-.7 1.6-.5.6-1.5.6-2.3.5-.9-.1-1.7-.3-2.6.3-.8.6-1.3 1.6-2.1 1.6s-1.3-1-2.1-1.6c-.9-.6-1.7-.4-2.6-.3-.8.1-1.8.1-2.3-.5-.4-.5-.3-1.2-.7-1.6-.4-.5-1.2-.6-2-.8C3.4 17.6 3 17.2 3 16.7c0-.8.7-.9 1.5-1.2.8-.3 1.4-.7 1.4-1.4 0-.7-.2-1.6-.2-3 0-3.3 2.6-6 5.9-6z"/>
+              </svg>
+            </div>
+            <div>
+              <div>Snapchat</div>
+              <small>@${m.snapchatName}</small>
+            </div>
+          </div>
+          <span class="pill">Open</span>
+        </a>
+      `;
+    }
+
+    // Intro buttons
+    on("aboutMeBtn", "click", showDash);
+    on("aboutGuildBtn", "click", showGuild);
+
+    // Nav buttons
+    on("homeBtn", "click", showIntro);
+    on("guildFromDashBtn", "click", showGuild);
+    on("backToDashBtn", "click", showDash);
+    on("homeFromGuildBtn", "click", showIntro);
+    on("backToGuildBtn", "click", showGuild);
+    on("homeFromMemberBtn", "click", showIntro);
+
+    // Render fixed data (dashboard)
+    $("year").textContent = new Date().getFullYear();
+    $("year2").textContent = new Date().getFullYear();
+    $("year3").textContent = new Date().getFullYear();
+
+    $("rankName").textContent = DATA.rankName;
+    $("rankPoints").textContent = DATA.rankPoints;
+
+    $("uidIgn").textContent = `UID: ${DATA.uid} • IGN: ${DATA.ign}`;
+    $("level").textContent = DATA.level;
+    $("kd").textContent = DATA.kd;
+    $("winrate").textContent = DATA.winrate;
+    $("matches").textContent = DATA.matches;
+    $("headshots").textContent = DATA.headshots;
+
+    $("bannerUID").textContent = `UID: ${DATA.uid} • Rank: ${DATA.rankName}`;
+    $("bannerIGN").textContent = `IGN: ${DATA.ign}`;
+
+    // Same image in places
+    setBoxImage("logoBox");
+    setBoxImage("avatarBox");
+    setBoxImage("guildLogoBox");
+    setBoxImage("memberLogoBox");
+
+    // Copy UID
+    on("copyUidBtn", "click", async () => {
+      try{
+        await navigator.clipboard.writeText(DATA.uid);
+        showToast("UID Copied ✅");
+      }catch{
+        showToast("Copy failed ❌");
+      }
+    });
+
+    // WhatsApp share
+    on("shareWaBtn", "click", () => {
+      const shareText =
+        `🔥 Free Fire Profile\n` +
+        `Name: Krishna Bajaj\n` +
+        `IGN: ${DATA.ign}\n` +
+        `UID: ${DATA.uid}\n` +
+        `Rank: ${DATA.rankName} (${DATA.rankPoints})\n` +
+        `K/D: ${DATA.kd} | Win: ${DATA.winrate} | Matches: ${DATA.matches}\n\n` +
+        `My Profile Link: ${location.href}`;
+      window.open("https://wa.me/?text=" + encodeURIComponent(shareText), "_blank", "noopener");
+    });
+
+    // Toast
+    function showToast(msg){
+      const t = document.createElement("div");
+      t.className="toast";
+      t.textContent=msg;
+      document.body.appendChild(t);
+      setTimeout(()=>t.classList.add("show"),50);
+      setTimeout(()=>{
+        t.classList.remove("show");
+        setTimeout(()=>t.remove(),400);
+      },2500);
+    }
+
+    // Animate progress bars on dashboard load
+    function animateStats(){
+      const kdVal = parseFloat(DATA.kd);
+      const winVal = parseFloat(DATA.winrate);
+      if($("kdBar")) $("kdBar").style.width = Math.min(kdVal*20,100)+"%";
+      if($("winBar")) $("winBar").style.width = winVal+"%";
+    }
+
+    /****************
+     * Guild banners (1-6) + click open member details
+     ****************/
+    function guildBannerHTML(i){
+      const m = MEMBERS[i];
+
+      let role = "Officer";
+      if(i === 0){
+        role = "Leader";
+      }else if(i === 1){
+        role = "Action Leader";
+      }
+
+      const roleClass =
+        role === "Leader" ? "role-leader" :
+        role === "Action Leader" ? "role-action" :
+        "role-officer";
+      return `
+        <div class="banner clickable glass rgbBorder" role="button" tabindex="0" data-member="${i}">
+          <div class="rgbContent bannerInner">
+            <div class="profileCard">
+              <div class="avatar"><img src="${m.image}" alt="Profile" loading="lazy" decoding="async"></div>
+              <div class="profileInfo">
+                <p class="titleLine">${m.name}</p>
+                <p class="subLine">Role • <span class="pill rolePill ${roleClass}">${role}</span></p>
+              </div>
+            </div>
+
+            <div class="bannerRight">
+              <div class="numBadge">#${i+1}</div>
+              <span class="pill">Open</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    const guildBanners = $("guildBanners");
+    if(guildBanners){
+      guildBanners.innerHTML = MEMBERS.map((_, i) => guildBannerHTML(i)).join("");
+      guildBanners.addEventListener("click", (e) => {
+        const card = e.target.closest("[data-member]");
+        if(!card) return;
+        showMember(Number(card.getAttribute("data-member")));
+      });
+      guildBanners.addEventListener("keydown", (e) => {
+        if(e.key !== "Enter") return;
+        const card = e.target.closest("[data-member]");
+        if(!card) return;
+        showMember(Number(card.getAttribute("data-member")));
       });
     }
 
-    function randomize(){
-      const kda = (Math.random()*3 + 1).toFixed(2);
-      const win = Math.floor(Math.random()*41 + 40) + "%";
-      const hrs = Math.floor(Math.random()*250 + 40);
+    /****************
+     * Snowfall (Dashboard only)
+     ****************/
+    const snow = { running:false, canvas:null, ctx:null, w:0, h:0, flakes:[], raf:null };
 
-      document.getElementById('kda').innerText = kda;
-      document.getElementById('win').innerText = win;
-      document.getElementById('hrs').innerText = hrs;
+    function resizeSnow(){
+      snow.w = window.innerWidth;
+      snow.h = window.innerHeight;
+      snow.canvas.width = Math.floor(snow.w * devicePixelRatio);
+      snow.canvas.height = Math.floor(snow.h * devicePixelRatio);
+      snow.ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
 
-      document.querySelectorAll('.bar').forEach(b=>{
-        b.style.width = '0%';
-        requestAnimationFrame(()=> {
-          const w = b.getAttribute('data-w') || "60";
-          b.style.width = w + '%';
+    function makeFlake(){
+      const size = 1 + Math.random() * 2.8;
+      return { x: Math.random()*snow.w, y: -10 - Math.random()*snow.h, r:size, s:0.6+Math.random()*1.4, vx:-0.3+Math.random()*0.6, a:0.18+Math.random()*0.30 };
+    }
+
+    function initSnow(){
+      snow.canvas = $("snowCanvas");
+      snow.ctx = snow.canvas.getContext("2d");
+      resizeSnow();
+      snow.flakes = Array.from({length: Math.min(140, Math.floor(snow.w / 8))}, makeFlake);
+      window.addEventListener("resize", resizeSnow);
+    }
+
+    function stepSnow(){
+      if(!snow.running) return;
+      const ctx = snow.ctx;
+      ctx.clearRect(0,0,snow.w,snow.h);
+
+      for(const f of snow.flakes){
+        f.y += f.s; f.x += f.vx;
+        if(f.y > snow.h + 10){ f.y = -10; f.x = Math.random() * snow.w; }
+        if(f.x < -10) f.x = snow.w + 10;
+        if(f.x > snow.w + 10) f.x = -10;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${f.a})`;
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      snow.raf = requestAnimationFrame(stepSnow);
+    }
+
+    function startSnow(){
+      if(!snow.canvas) initSnow();
+      if(snow.running) return;
+      snow.running = true;
+      stepSnow();
+    }
+
+    function stopSnow(){
+      snow.running = false;
+      if(snow.raf) cancelAnimationFrame(snow.raf);
+      if(snow.ctx) snow.ctx.clearRect(0,0,snow.w,snow.h);
+    }
+
+    /****************
+     * Instagram deep link (open app on mobile; fallback to web)
+     ****************/
+    const insta = $("instaLink");
+    if(insta){
+      insta.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const username = insta.getAttribute("data-username") || "chinxx.ly";
+        const webUrl = insta.getAttribute("data-web") || insta.href;
+
+        const ua = navigator.userAgent || "";
+        const isAndroid = /Android/i.test(ua);
+        const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+        const iosDeep = `instagram://user?username=${encodeURIComponent(username)}`;
+        const androidIntent = `intent://instagram.com/_u/${encodeURIComponent(username)}#Intent;package=com.instagram.android;scheme=https;end`;
+        const androidDeep = `instagram://user?username=${encodeURIComponent(username)}`;
+
+        if(isAndroid){
+          window.location.href = androidIntent;
+          setTimeout(() => { window.location.href = androidDeep; }, 150);
+          setTimeout(() => { window.location.href = webUrl; }, 1400);
+        }else if(isIOS){
+          window.location.href = iosDeep;
+          setTimeout(() => { window.location.href = webUrl; }, 1400);
+        }else{
+          window.open(webUrl, "_blank", "noopener");
+        }
+      });
+    }
+  
+
+    /****************
+     * Extra delight (safe)
+     * - Hero typing
+     * - Ripple + spark burst on taps
+     * - Gentle tilt on desktop (pointer:fine)
+     ****************/
+    (function(){
+      const heroType = document.getElementById("heroType");
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Typewriter vibes (only if element exists)
+      if(heroType && !prefersReduced){
+        const lines = [
+          "⚡ Thunder vibes: ON",
+          "😄 Aaj ka din OP banate hain!",
+          "🔥 Tap • Explore • Flex",
+          "💛 Zenitzu mode: activated"
+        ];
+        let i=0, t=0, erasing=false;
+        function tick(){
+          const full = lines[i];
+          if(!erasing){
+            t = Math.min(full.length, t+1);
+            heroType.textContent = full.slice(0,t);
+            if(t === full.length){
+              erasing = true;
+              setTimeout(tick, 1100);
+              return;
+            }
+          }else{
+            t = Math.max(0, t-1);
+            heroType.textContent = full.slice(0,t);
+            if(t === 0){
+              erasing = false;
+              i = (i+1) % lines.length;
+            }
+          }
+          setTimeout(tick, erasing ? 18 : 28);
+        }
+        tick();
+      }
+
+      // FX Canvas spark burst
+      const fx = {
+        canvas: document.getElementById("fxCanvas"),
+        ctx: null,
+        w: 0, h: 0,
+        parts: [],
+        raf: 0
+      };
+      function resizeFx(){
+        if(!fx.canvas) return;
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        fx.w = window.innerWidth;
+        fx.h = window.innerHeight;
+        fx.canvas.width = Math.floor(fx.w * dpr);
+        fx.canvas.height = Math.floor(fx.h * dpr);
+        fx.canvas.style.width = fx.w + "px";
+        fx.canvas.style.height = fx.h + "px";
+        fx.ctx = fx.canvas.getContext("2d");
+        fx.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function addSparks(x,y, power=1){
+        if(!fx.canvas) return;
+        if(!fx.ctx) resizeFx();
+        const n = Math.floor(26 * power);
+        for(let k=0;k<n;k++){
+          const a = Math.random()*Math.PI*2;
+          const sp = (2.2 + Math.random()*5.2) * power;
+          fx.parts.push({
+            x, y,
+            vx: Math.cos(a)*sp,
+            vy: Math.sin(a)*sp - (0.6*power),
+            life: 0,
+            ttl: 32 + Math.random()*16,
+            r: 1.2 + Math.random()*1.8,
+            hue: 40 + Math.random()*70
+          });
+        }
+        if(!fx.raf) fx.raf = requestAnimationFrame(stepFx);
+      }
+      function stepFx(){
+        fx.raf = 0;
+        if(!fx.ctx) return;
+        fx.ctx.clearRect(0,0,fx.w,fx.h);
+        const alive = [];
+        for(const p of fx.parts){
+          p.life++;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.985;
+          p.vy = p.vy*0.985 + 0.06;
+          const k = 1 - (p.life/p.ttl);
+          if(k <= 0) continue;
+          alive.push(p);
+
+          fx.ctx.beginPath();
+          fx.ctx.fillStyle = `hsla(${p.hue}, 95%, 60%, ${Math.max(0, k*0.85)})`;
+          fx.ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          fx.ctx.fill();
+
+          // tiny trail
+          fx.ctx.beginPath();
+          fx.ctx.strokeStyle = `hsla(${p.hue}, 95%, 60%, ${Math.max(0, k*0.35)})`;
+          fx.ctx.lineWidth = 1;
+          fx.ctx.moveTo(p.x, p.y);
+          fx.ctx.lineTo(p.x - p.vx*1.8, p.y - p.vy*1.8);
+          fx.ctx.stroke();
+        }
+        fx.parts = alive;
+        if(fx.parts.length){
+          fx.raf = requestAnimationFrame(stepFx);
+        }
+      }
+      window.addEventListener("resize", resizeFx, {passive:true});
+      resizeFx();
+
+      // Ripple on pointer down (buttons + contacts) + spark pop
+      const supportsPointer = ("PointerEvent" in window);
+      const downEvent = supportsPointer ? "pointerdown" : (("ontouchstart" in window) ? "touchstart" : "mousedown");
+
+      document.addEventListener(downEvent, (e) => {
+        const el = e.target && e.target.closest ? e.target.closest(".btn, .contact") : null;
+        if(!el) return;
+
+        const rect = el.getBoundingClientRect();
+        const clientX = (e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX);
+        const clientY = (e.touches && e.touches[0] ? e.touches[0].clientY : e.clientY);
+
+        // Ripple
+        const r = document.createElement("span");
+        r.className = "rippleDot";
+        const x = (clientX ?? (rect.left + rect.width/2)) - rect.left;
+        const y = (clientY ?? (rect.top + rect.height/2)) - rect.top;
+        r.style.left = x + "px";
+        r.style.top = y + "px";
+        el.appendChild(r);
+        setTimeout(()=> r.remove(), 700);
+
+        // Sparks (subtle)
+        if(!prefersReduced){
+          addSparks(clientX || (rect.left + rect.width/2), clientY || (rect.top + rect.height/2), 0.9);
+        }
+      }, {passive:true});
+
+      // Gentle tilt on desktop only
+      if(!prefersReduced && window.matchMedia && window.matchMedia("(pointer: fine)").matches){
+        const tiltEls = Array.from(document.querySelectorAll(".card, .banner, .introCard"));
+        const max = 6;
+        tiltEls.forEach(el => {
+          let rect;
+          const onMove = (ev) => {
+            rect = rect || el.getBoundingClientRect();
+            const px = (ev.clientX - rect.left) / rect.width;
+            const py = (ev.clientY - rect.top) / rect.height;
+            const rx = (py - 0.5) * -max;
+            const ry = (px - 0.5) * max;
+            el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+          };
+          const onEnter = () => { rect = el.getBoundingClientRect(); };
+          const onLeave = () => { rect = null; el.style.transform = ""; };
+
+          el.addEventListener("mousemove", onMove);
+          el.addEventListener("mouseenter", onEnter);
+          el.addEventListener("mouseleave", onLeave);
         });
-      });
-    }
+      }
 
-    function submitForm(e){
-      e.preventDefault();
-      const status = document.getElementById('formStatus');
-      const name = document.getElementById('name').value.trim();
-      status.textContent = "Thanks " + (name || "Gamer") + "! (Demo) Message sent ✅";
-      e.target.reset();
-      setTimeout(()=> status.textContent = "", 3500);
-    }
+      // Small celebratory pop when opening dashboard
+      const _showDash = window.showDash;
+      // showDash is in script scope (function declaration), so try patch safely if accessible
+      // If not accessible, ignore.
+      try{
+        if(typeof _showDash === "function"){
+          window.showDash = function(){
+            _showDash();
+            if(!prefersReduced) addSparks(window.innerWidth*0.5, 140, 1.2);
+          };
+        }
+      }catch{}
+    })();
 
-    window.addEventListener('load', () => {
-      document.getElementById('year').innerText = new Date().getFullYear();
-      document.querySelectorAll('.bar').forEach((b, i)=>{
-        const w = b.getAttribute('data-w') || "60";
-        setTimeout(()=> b.style.width = w + '%', 120 + i*80);
-      });
-    });
   </script>
 </body>
 </html>
