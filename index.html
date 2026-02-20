@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="theme-color" content="#070a14" />
+  <meta name="theme-color" content="#070311" />
   <meta name="color-scheme" content="dark" />
   <meta name="description" content="Krishna Bajaj • Free Fire Profile Dashboard — Stats, Rank, Guild & Socials." />
 
@@ -29,22 +29,23 @@
 
   <style>
     :root{
-      --bg1:#070a14;
-      --bg2:#0f1733;
-      --card: rgba(255,255,255,0.08);
+      --bg1:#070311;
+      --bg2:#061a24;
+      --card: rgba(255,255,255,0.075);
       --border: rgba(255,255,255,0.14);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.68);
 
-      --accent1:#7c3aed;
-      --accent3:#06b6d4;
+      --accent1:#ff2d95;
+      --accent2:#ffb703;
+      --accent3:#00f5d4;
 
-      --shadow: 0 18px 60px rgba(0,0,0,0.38);
+      --shadow: 0 18px 60px rgba(0,0,0,0.40);
       --radius: 22px;
 
-      --rgbA: 124, 58, 237;
-      --rgbB: 6, 182, 212;
-      --rgbC: 34, 197, 94;
+      --rgbA: 255, 45, 149;
+      --rgbB: 0, 245, 212;
+      --rgbC: 255, 183, 3;
     }
 
     *{ box-sizing:border-box; }
@@ -54,9 +55,10 @@
       font-family: 'Poppins', sans-serif;
       color:var(--text);
       background:
-        radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,0.38), transparent 55%),
-        radial-gradient(900px 650px at 85% 18%, rgba(6,182,212,0.25), transparent 58%),
-        radial-gradient(900px 700px at 50% 95%, rgba(34,197,94,0.20), transparent 55%),
+        radial-gradient(980px 640px at 12% 8%, rgba(var(--rgbA),0.28), transparent 60%),
+        radial-gradient(980px 680px at 88% 14%, rgba(var(--rgbB),0.20), transparent 62%),
+        radial-gradient(980px 740px at 50% 98%, rgba(var(--rgbC),0.16), transparent 64%),
+        radial-gradient(760px 520px at 50% 40%, rgba(255,255,255,0.05), transparent 62%),
         linear-gradient(160deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
@@ -112,11 +114,11 @@
       padding: 12px 16px; border-radius: 16px; cursor:pointer;
       transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
       background: linear-gradient(135deg, var(--accent1), var(--accent3));
-      box-shadow: 0 12px 28px rgba(124,58,237,0.22);
+      box-shadow: 0 12px 28px rgba(var(--rgbA),0.22);
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       user-select:none; white-space:nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 16px 34px rgba(124,58,237,0.28); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 16px 34px rgba(var(--rgbA),0.28); }
     .btn:active{ transform: translateY(1px); }
     .btn.secondary{
       background: rgba(255,255,255,0.10);
@@ -157,9 +159,9 @@
       content:"";
       position:absolute; inset:-80px;
       background:
-        radial-gradient(240px 240px at 18% 24%, rgba(124,58,237,.35), transparent 60%),
-        radial-gradient(280px 280px at 82% 30%, rgba(6,182,212,.22), transparent 60%),
-        radial-gradient(260px 260px at 52% 86%, rgba(34,197,94,.18), transparent 60%);
+        radial-gradient(240px 240px at 18% 24%, rgba(var(--rgbA),.35), transparent 60%),
+        radial-gradient(280px 280px at 82% 30%, rgba(var(--rgbB),.22), transparent 60%),
+        radial-gradient(260px 260px at 52% 86%, rgba(var(--rgbC),.18), transparent 60%);
       z-index:0;
     }
     .heroRow{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom: 16px; }
@@ -207,9 +209,9 @@
       position:absolute;
       inset:-80px;
       background:
-        radial-gradient(420px 240px at 12% 30%, rgba(124,58,237,0.35), transparent 60%),
-        radial-gradient(420px 240px at 86% 40%, rgba(6,182,212,0.22), transparent 60%),
-        radial-gradient(420px 240px at 50% 95%, rgba(34,197,94,0.18), transparent 62%);
+        radial-gradient(420px 240px at 12% 30%, rgba(var(--rgbA),0.35), transparent 60%),
+        radial-gradient(420px 240px at 86% 40%, rgba(var(--rgbB),0.22), transparent 60%),
+        radial-gradient(420px 240px at 50% 95%, rgba(var(--rgbC),0.18), transparent 62%);
       z-index:0;
       transform: rotate(-2deg);
     }
@@ -234,7 +236,7 @@
       position:absolute;
       inset:-3px;
       border-radius:22px;
-      background:linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e,#7c3aed);
+      background:linear-gradient(90deg, var(--accent1), var(--accent3), var(--accent2), var(--accent1));
       background-size:300% 300%;
       animation:ringRun 5s linear infinite;
       z-index:-1;
@@ -268,7 +270,7 @@
       padding: 16px;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.14);
-      background: linear-gradient(135deg, rgba(124,58,237,.20), rgba(6,182,212,.12));
+      background: linear-gradient(135deg, rgba(var(--rgbA),.20), rgba(var(--rgbB),.12));
       margin-bottom: 12px;
       position: relative;
       overflow: hidden;
@@ -277,8 +279,8 @@
       content:"";
       position:absolute;
       inset:-60px;
-      background: radial-gradient(260px 180px at 25% 40%, rgba(124,58,237,.35), transparent 60%),
-                  radial-gradient(260px 180px at 80% 55%, rgba(6,182,212,.22), transparent 60%);
+      background: radial-gradient(260px 180px at 25% 40%, rgba(var(--rgbA),.35), transparent 60%),
+                  radial-gradient(260px 180px at 80% 55%, rgba(var(--rgbB),.22), transparent 60%);
       filter: blur(10px);
       opacity: .55;
       animation: rankPulse 2.8s ease-in-out infinite;
@@ -311,7 +313,7 @@
     }
     .progressFill{
       height:100%;
-      background:linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e);
+      background:linear-gradient(90deg, var(--accent1), var(--accent3), var(--accent2));
       width:0%;
       transition:width 1.2s ease;
     }
@@ -428,9 +430,9 @@
 
     /* LEADER (gold) */
     .role-leader{
-      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(56,189,248,0.92), rgba(37,99,235,0.95));
-      color: #0b0b0f !important;
-      box-shadow: 0 0 0 1px rgba(56,189,248,0.35), 0 12px 30px rgba(37,99,235,0.25);
+      background: linear-gradient(135deg, rgba(var(--rgbB),0.95), rgba(var(--rgbC),0.92), rgba(var(--rgbB),0.95));
+      color: #061016 !important;
+      box-shadow: 0 0 0 1px rgba(var(--rgbB),0.32), 0 12px 30px rgba(var(--rgbB),0.20);
       animation: rolePulseLeader 1.9s ease-in-out infinite;
       font-weight: 950;
     }
@@ -451,9 +453,9 @@
 
     /* ACTION LEADER (electric) */
     .role-action{
-      background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92), rgba(236,72,153,0.95));
+      background: linear-gradient(135deg, rgba(var(--rgbA),0.95), rgba(var(--rgbB),0.92), rgba(var(--rgbA),0.95));
       color: #ffffff !important;
-      box-shadow: 0 0 0 1px rgba(6,182,212,0.28), 0 12px 30px rgba(6,182,212,0.18);
+      box-shadow: 0 0 0 1px rgba(var(--rgbB),0.26), 0 12px 30px rgba(var(--rgbA),0.18);
       animation: rolePulseAction 2.2s ease-in-out infinite;
       font-weight: 950;
     }
@@ -474,7 +476,7 @@
 
     /* Officer */
     .role-officer{
-      background: linear-gradient(135deg, rgba(234,179,8,0.95), rgba(250,204,21,0.90));
+      background: linear-gradient(135deg, rgba(var(--rgbC),0.95), rgba(var(--rgbC),0.82));
       color: #1a1a1a !important;
       font-weight: 900;
       box-shadow: none;
@@ -550,7 +552,7 @@ header{ margin-bottom: 18px; }
 }
 .banner.clickable:focus{
   outline: none;
-  box-shadow: 0 0 0 3px rgba(6,182,212,0.25), 0 18px 60px rgba(0,0,0,0.38);
+  box-shadow: 0 0 0 3px rgba(var(--rgbB),0.25), 0 18px 60px rgba(0,0,0,0.38);
 }
 
 /* Avatar: sharper and consistent */
@@ -623,19 +625,19 @@ header{ margin-bottom: 18px; }
    Ensures Pro CSS doesn't override role styles
    =============================== */
 .pill.rolePill.role-leader{
-  background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(56,189,248,0.92), rgba(37,99,235,0.95)) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 1px rgba(56,189,248,0.35), 0 12px 30px rgba(37,99,235,0.25) !important;
+  background: linear-gradient(135deg, rgba(var(--rgbB),0.95), rgba(var(--rgbC),0.92), rgba(var(--rgbB),0.95)) !important;
+  color: #061016 !important;
+  box-shadow: 0 0 0 1px rgba(var(--rgbB),0.32), 0 12px 30px rgba(var(--rgbB),0.20) !important;
   font-weight: 950 !important;
 }
 .pill.rolePill.role-action{
-  background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92), rgba(236,72,153,0.95)) !important;
+  background: linear-gradient(135deg, rgba(var(--rgbA),0.95), rgba(var(--rgbB),0.92), rgba(var(--rgbA),0.95)) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 0 1px rgba(236,72,153,0.28), 0 12px 30px rgba(168,85,247,0.20) !important;
+  box-shadow: 0 0 0 1px rgba(var(--rgbB),0.26), 0 12px 30px rgba(var(--rgbA),0.18) !important;
   font-weight: 950 !important;
 }
 .pill.rolePill.role-officer{
-  background: linear-gradient(135deg, rgba(234,179,8,0.95), rgba(250,204,21,0.90)) !important;
+  background: linear-gradient(135deg, rgba(var(--rgbC),0.95), rgba(var(--rgbC),0.82)) !important;
   color: #1a1a1a !important;
   box-shadow: none !important;
   font-weight: 900 !important;
@@ -666,7 +668,7 @@ header{ margin-bottom: 18px; }
   background: rgba(255,255,255,0.10);
 }
 .introBtn:hover{
-  box-shadow: 0 18px 42px rgba(6,182,212,0.14), 0 18px 42px rgba(124,58,237,0.14);
+  box-shadow: 0 18px 42px rgba(var(--rgbB),0.14), 0 18px 42px rgba(var(--rgbA),0.14);
 }
 .introHint{
   margin-top: 14px;
@@ -701,7 +703,7 @@ body{
 }
 
 ::selection{
-  background: rgba(6,182,212,0.28);
+  background: rgba(var(--rgbB),0.28);
   color: rgba(255,255,255,0.96);
 }
 
@@ -715,7 +717,7 @@ a, button{
 .btn:focus-visible,
 .contact:focus-visible,
 .banner.clickable:focus-visible{
-  outline: 3px solid rgba(6,182,212,0.45);
+  outline: 3px solid rgba(var(--rgbB),0.45);
   outline-offset: 3px;
 }
 
@@ -761,8 +763,8 @@ a, button{
       z-index:0;
       background:
         radial-gradient(900px 650px at 20% 18%, rgba(245,158,11,0.12), transparent 60%),
-        radial-gradient(900px 650px at 75% 80%, rgba(124,58,237,0.14), transparent 62%),
-        radial-gradient(900px 650px at 70% 20%, rgba(6,182,212,0.10), transparent 60%);
+        radial-gradient(900px 650px at 75% 80%, rgba(var(--rgbA),0.14), transparent 62%),
+        radial-gradient(900px 650px at 70% 20%, rgba(var(--rgbB),0.10), transparent 60%);
       filter: blur(10px);
       opacity: .85;
       transform: translate3d(0,0,0);
@@ -1038,6 +1040,7 @@ html{
         <div class="introCtaRow">
           <button class="btn introBtn" id="aboutMeBtn">👤 About Me</button>
           <button class="btn secondary introBtn" id="aboutGuildBtn">🛡️ About Guild</button>
+          <button class="btn introBtn" id="apnaLudoBtn">🎮 Apna Ludo</button>
         </div>
         <div class="introHint">👇 Tap any button to continue</div>
 
@@ -1284,6 +1287,22 @@ html{
     </div>
   </section>
 
+    <!-- APNA LUDO -->
+<section id="screenLudo" class="screen">
+  
+  <h2 style="text-align:center;">🎮 Mini Game</h2>
+
+  <iframe 
+    src="mini game.html" 
+    width="100%" 
+    height="650px" 
+    style="border:none; border-radius:20px;">
+  </iframe>
+
+  <button onclick="setRoute('dash')" class="btn">⬅ Back</button>
+
+</section>
+
   <script>
     /***************
      * Profile data (same as before)
@@ -1323,7 +1342,7 @@ html{
     }
 
     function show(screenId){
-      ["screenIntro","screenDash","screenGuild","screenMember"].forEach(s => {
+      ["screenIntro","screenDash","screenGuild","screenMember","screenLudo"].forEach(s => {
         const el = $(s);
         if(!el) return;
         el.classList.remove("active");
@@ -1395,22 +1414,65 @@ html{
       `;
     }
 
+    /****************
+     * In-page routing (Back button friendly)
+     * - Updates URL hash so phone "Back" goes to previous screen, not exit the site
+     ****************/
+    function setRoute(route, replace=false){
+      const clean = String(route || "intro").replace(/^#/, "");
+      const url = location.pathname + location.search + "#" + clean;
+      try{
+        if(replace) history.replaceState(null, "", url);
+        else history.pushState(null, "", url);
+      }catch{
+        // Fallback: hash only (still creates history entries)
+        if(replace) location.replace("#" + clean);
+        else location.hash = "#" + clean;
+      }
+      applyRouteFromHash();
+    }
+
+    function applyRouteFromHash(){
+      const h = (location.hash || "#intro").replace(/^#/, "");
+      if(h === "dash"){ showDash(); return; }
+      if(h === "guild"){ showGuild(); return; }
+      if(h === "ludo"){ show("screenLudo"); return; }
+
+      if(h.startsWith("member-")){
+        const n = parseInt(h.split("-")[1], 10);
+        showMember(Number.isFinite(n) ? n : 0);
+        return;
+      }
+
+      // default
+      showIntro();
+    }
+
+    // Handle hardware Back / browser Back
+    window.addEventListener("popstate", applyRouteFromHash);
+    window.addEventListener("hashchange", applyRouteFromHash);
+
+
     // Intro buttons
-    on("aboutMeBtn", "click", showDash);
-    on("aboutGuildBtn", "click", showGuild);
+    on("aboutMeBtn", "click", () => setRoute("dash"));
+    on("apnaLudoBtn", "click", () => setRoute("ludo"));
+    on("backFromLudoBtn", "click", () => setRoute("dash"));
+    on("homeFromLudoBtn", "click", () => setRoute("intro"));
+    on("aboutGuildBtn", "click", () => setRoute("guild"));
 
     // Nav buttons
-    on("homeBtn", "click", showIntro);
-    on("guildFromDashBtn", "click", showGuild);
-    on("backToDashBtn", "click", showDash);
-    on("homeFromGuildBtn", "click", showIntro);
-    on("backToGuildBtn", "click", showGuild);
-    on("homeFromMemberBtn", "click", showIntro);
+    on("homeBtn", "click", () => setRoute("intro"));
+    on("guildFromDashBtn", "click", () => setRoute("guild"));
+    on("backToDashBtn", "click", () => setRoute("dash"));
+    on("homeFromGuildBtn", "click", () => setRoute("intro"));
+    on("backToGuildBtn", "click", () => setRoute("guild"));
+    on("homeFromMemberBtn", "click", () => setRoute("intro"));
 
     // Render fixed data (dashboard)
     $("year").textContent = new Date().getFullYear();
     $("year2").textContent = new Date().getFullYear();
     $("year3").textContent = new Date().getFullYear();
+    $("year4").textContent = new Date().getFullYear();
 
     $("rankName").textContent = DATA.rankName;
     $("rankPoints").textContent = DATA.rankPoints;
@@ -1518,13 +1580,13 @@ html{
       guildBanners.addEventListener("click", (e) => {
         const card = e.target.closest("[data-member]");
         if(!card) return;
-        showMember(Number(card.getAttribute("data-member")));
+        setRoute("member-" + Number(card.getAttribute("data-member")));
       });
       guildBanners.addEventListener("keydown", (e) => {
         if(e.key !== "Enter") return;
         const card = e.target.closest("[data-member]");
         if(!card) return;
-        showMember(Number(card.getAttribute("data-member")));
+        setRoute("member-" + Number(card.getAttribute("data-member")));
       });
     }
 
@@ -1801,6 +1863,15 @@ html{
       }catch{}
     })();
 
-  </script>
+  
+    /****************
+     * Deep-link init:
+     * If someone opens with #dash / #guild / #member-2, show that screen.
+     ****************/
+    if(location.hash){
+      applyRouteFromHash();
+    }
+
+</script>
 </body>
 </html>
